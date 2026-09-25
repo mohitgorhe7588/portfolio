@@ -1,45 +1,47 @@
 @import "tailwindcss";
 
-/* ─── Monochromatic Black & White Design System Tokens ───── */
+/* ─── White & Black (Light Editorial) Design System Tokens ───── */
 :root {
-  /* Backgrounds: Pure Obsidian & Technical Charcoal */
-  --bg-primary: #000000;
-  --bg-secondary: #08080a;
-  --bg-surface: #101014;
-  --bg-surface-hover: #18181d;
-  --bg-elevated: #1e1e24;
+  /* Backgrounds: Crisp Technical Paper / Minimal Command Center */
+  --bg-primary: #ffffff;
+  --bg-secondary: #fbfbfb;
+  --bg-surface: #ffffff;
+  --bg-surface-hover: #f4f4f5;
+  --bg-elevated: #f4f4f5;
 
-  /* Borders: Precision Monochromatic Lines */
-  --border-primary: #27272a;
-  --border-subtle: #18181b;
-  --border-accent: rgba(255, 255, 255, 0.25);
+  /* Borders: Sharp Technical Outlines */
+  --border-primary: #e4e4e7;
+  --border-subtle: #f4f4f5;
+  --border-strong: #18181b;
+  --border-accent: rgba(0, 0, 0, 0.85);
 
-  /* Monochromatic Accents */
-  --accent-white: #ffffff;
-  --accent-white-muted: rgba(255, 255, 255, 0.7);
-  --accent-white-dim: rgba(255, 255, 255, 0.12);
-  --accent-zinc: #a1a1aa;
+  /* Monochrome Contrast Accents */
+  --accent-black: #000000;
+  --accent-dark: #18181b;
+  --accent-zinc: #71717a;
+  --accent-muted: rgba(0, 0, 0, 0.6);
+  --accent-dim: rgba(0, 0, 0, 0.05);
 
-  /* Legacy variable aliases mapped to pure monochrome */
-  --accent-cyan: #ffffff;
-  --accent-cyan-muted: rgba(255, 255, 255, 0.7);
-  --accent-cyan-dim: rgba(255, 255, 255, 0.12);
-  --accent-amber: #e4e4e7;
-  --accent-amber-muted: rgba(255, 255, 255, 0.6);
-  --accent-amber-dim: rgba(255, 255, 255, 0.1);
-  --accent-green: #ffffff;
-  --accent-green-dim: rgba(255, 255, 255, 0.15);
-  --accent-red: #d4d4d8;
+  /* Legacy variable mappings to pure White & Black */
+  --accent-cyan: #000000;
+  --accent-cyan-muted: #27272a;
+  --accent-cyan-dim: rgba(0, 0, 0, 0.05);
+  --accent-amber: #18181b;
+  --accent-amber-muted: #52525b;
+  --accent-amber-dim: rgba(0, 0, 0, 0.04);
+  --accent-green: #000000;
+  --accent-green-dim: rgba(0, 0, 0, 0.06);
+  --accent-red: #27272a;
 
-  /* Text: High Contrast & Controlled Legibility */
-  --text-primary: #ffffff;
-  --text-secondary: #a1a1aa;
+  /* Text: High Contrast Black & Grayscale */
+  --text-primary: #09090b;
+  --text-secondary: #52525b;
   --text-muted: #71717a;
-  --text-accent: #ffffff;
+  --text-accent: #000000;
 
-  /* Gradients: Pure Light & Shadow */
-  --gradient-surface: linear-gradient(135deg, #101014 0%, #08080a 100%);
-  --gradient-hero: radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.05) 0%, transparent 60%);
+  /* Gradients: Subtle Paper Elevation */
+  --gradient-surface: linear-gradient(180deg, #ffffff 0%, #fbfbfb 100%);
+  --gradient-hero: radial-gradient(ellipse at 50% 0%, rgba(0, 0, 0, 0.03) 0%, transparent 70%);
 }
 
 @theme inline {
@@ -51,13 +53,13 @@
   --color-border-primary: var(--border-primary);
   --color-border-subtle: var(--border-subtle);
   --color-border-accent: var(--border-accent);
-  --color-accent-cyan: var(--accent-white);
-  --color-accent-cyan-muted: var(--accent-white-muted);
-  --color-accent-cyan-dim: var(--accent-white-dim);
+  --color-accent-cyan: var(--accent-black);
+  --color-accent-cyan-muted: var(--accent-cyan-muted);
+  --color-accent-cyan-dim: var(--accent-cyan-dim);
   --color-accent-amber: var(--accent-amber);
   --color-accent-amber-muted: var(--accent-amber-muted);
   --color-accent-amber-dim: var(--accent-amber-dim);
-  --color-accent-green: var(--accent-white);
+  --color-accent-green: var(--accent-green);
   --color-accent-green-dim: var(--accent-green-dim);
   --color-accent-red: var(--accent-red);
   --color-text-primary: var(--text-primary);
@@ -96,14 +98,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ─── Monochromatic Grid Background ───────────────────────── */
+/* ─── Light Technical Dot Grid ────────────────────────────── */
 .dot-grid {
-  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.08) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
 .dot-grid-fine {
-  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.07) 0.5px, transparent 0.5px);
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.05) 0.5px, transparent 0.5px);
   background-size: 16px 16px;
 }
 
@@ -137,10 +139,10 @@ body {
   gap: 0.5rem;
   font-family: var(--font-jetbrains-mono, 'JetBrains Mono', monospace);
   font-size: 0.75rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--accent-white);
+  color: #000000;
   margin-bottom: 1rem;
 }
 
@@ -148,37 +150,37 @@ body {
   content: '';
   display: inline-block;
   width: 1.5rem;
-  height: 1px;
-  background-color: var(--accent-white);
-  opacity: 0.6;
+  height: 2px;
+  background-color: #000000;
 }
 
 /* ─── Card Styles ─────────────────────────────────────────── */
 .card {
-  background: var(--gradient-surface);
+  background: #ffffff;
   border: 1px solid var(--border-primary);
   border-radius: 0.75rem;
-  transition: border-color 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease;
 }
 
 .card:hover {
-  border-color: rgba(255, 255, 255, 0.4);
-  box-shadow: 0 0 25px rgba(255, 255, 255, 0.04);
+  border-color: #000000;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
 }
 
-/* ─── Monochromatic Status Dot ────────────────────────────── */
+/* ─── Status Indicator ────────────────────────────────────── */
 .status-dot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background-color: #ffffff;
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+  background-color: #000000;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.15);
   animation: pulse-dot 2s ease-in-out infinite;
 }
 
 @keyframes pulse-dot {
   0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.4; transform: scale(0.9); }
+  50% { opacity: 0.35; transform: scale(0.9); }
 }
 
 /* ─── Terminal / Code Aesthetic ────────────────────────────── */
@@ -196,27 +198,27 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--bg-primary);
+  background: #ffffff;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #27272a;
+  background: #d4d4d8;
   border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #52525b;
+  background: #71717a;
 }
 
 /* ─── Selection ───────────────────────────────────────────── */
 ::selection {
-  background: #ffffff;
-  color: #000000;
+  background: #000000;
+  color: #ffffff;
 }
 
 /* ─── Focus Ring ──────────────────────────────────────────── */
 :focus-visible {
-  outline: 2px solid #ffffff;
+  outline: 2px solid #000000;
   outline-offset: 2px;
   border-radius: 4px;
 }

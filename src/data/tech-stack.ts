@@ -1,116 +1,144 @@
-// ─── Technology Stack Data ───────────────────────────────────
-// Only technologies supported by actual project content.
+// ─── Technical Skills Stack Data ─────────────────────────────
+// Derived directly from Mohit Rajendra Gorhe's CV.
 
 export interface TechCategory {
   id: string;
   label: string;
-  icon: string; // Lucide icon name
-  technologies: string[];
-  accentColor: 'cyan' | 'amber' | 'green';
+  icon: string;
+  skills: string[];
+  description?: string;
 }
 
 export const techCategories: TechCategory[] = [
   {
-    id: 'ai-ml',
-    label: 'AI / ML',
+    id: 'ai-cv',
+    label: 'AI / ML & Computer Vision',
+    icon: 'Eye',
+    skills: [
+      'Python',
+      'OpenCV',
+      'YOLO',
+      'CNNs',
+      'Object Detection',
+      'Pose Estimation',
+      'Image Processing',
+      'Scikit-learn',
+      'NumPy & Pandas',
+      'TensorFlow (Basic)',
+    ],
+    description: 'Real-time perception, object tracking, activity classification, and deep neural nets.',
+  },
+  {
+    id: 'genai',
+    label: 'GenAI & LLM Systems',
     icon: 'Brain',
-    technologies: ['Python', 'NumPy', 'Pandas', 'Scikit-learn', 'PyTorch', 'OpenCV', 'YOLO', 'TensorFlow'],
-    accentColor: 'cyan',
+    skills: [
+      'LangChain',
+      'RAG Architectures',
+      'Google Gemini API',
+      'FAISS Vector Search',
+      'Prompt Engineering',
+      'LLM App Development',
+      'Hugging Face (Learning)',
+    ],
+    description: 'Document Q&A, contextual chunking, embeddings, and grounded generation.',
   },
   {
-    id: 'ai-engineering',
-    label: 'AI Engineering',
-    icon: 'Cpu',
-    technologies: ['LLMs', 'RAG', 'LangChain', 'LlamaIndex', 'FastAPI'],
-    accentColor: 'cyan',
-  },
-  {
-    id: 'systems',
-    label: 'Systems',
-    icon: 'Terminal',
-    technologies: ['Linux', 'Docker', 'Git', 'GitHub', 'Networking', 'Distributed Systems'],
-    accentColor: 'green',
-  },
-  {
-    id: 'robotics-uas',
-    label: 'Robotics / UAS',
+    id: 'uav-hardware',
+    label: 'UAS, Flight Systems & Hardware',
     icon: 'Plane',
-    technologies: ['ArduPilot', 'Pixhawk', 'Flight Controllers', 'Telemetry', 'Sensors', 'Embedded Systems'],
-    accentColor: 'amber',
+    skills: [
+      'Flight Controller Calibration',
+      'MCU Firmware & Bootloader Updates',
+      'Ground Control Station (GCS)',
+      'Payload Release Integration',
+      'Telemetry Analysis',
+      'INAV & Betaflight Tuning',
+      'MAVLink Communication',
+    ],
+    description: 'Tactical UAV configuration, mission planning, sensor integration, and field testing.',
   },
   {
-    id: 'iot',
-    label: 'IoT',
-    icon: 'Wifi',
-    technologies: ['Microcontrollers', 'Sensors', 'IoT Communication', 'Automation', 'Edge Systems'],
-    accentColor: 'green',
+    id: 'edge-embedded',
+    label: 'Edge AI & Embedded Systems',
+    icon: 'Cpu',
+    skills: [
+      'Raspberry Pi (Edge AI)',
+      'Arduino Uno',
+      'Real-Time Onboard Inference',
+      'Load Cell & HX711 ADCs',
+      'LDR & Servo Actuators',
+      'GPIO Hardware Interfaces',
+    ],
+    description: 'Deploying quantized deep learning models on constrained silicon and robotics.',
+  },
+  {
+    id: 'backend-tools',
+    label: 'Backend, Web & Engineering Tools',
+    icon: 'Terminal',
+    skills: [
+      'C++',
+      'Flask & Django',
+      'Streamlit',
+      'SQL (PostgreSQL / MySQL / SQLite)',
+      'Linux & CLI',
+      'Git & GitHub',
+      'VS Code & Jupyter',
+    ],
+    description: 'Software development, automated scripts, databases, and version control.',
   },
 ];
 
-// ─── Engineering Domains ─────────────────────────────────────
+// ─── Engineering Domains (Monochrome Technical Map) ──────────
 export interface EngineeringDomain {
   id: string;
   label: string;
   description: string;
   icon: string;
-  connections: string[]; // IDs of connected domains
+  connections: string[];
 }
 
 export const engineeringDomains: EngineeringDomain[] = [
   {
-    id: 'ai-ml',
-    label: 'AI / ML',
-    description: 'Machine learning, deep learning, model development',
-    icon: 'Brain',
-    connections: ['cv', 'autonomous', 'agriculture'],
-  },
-  {
     id: 'cv',
     label: 'Computer Vision',
-    description: 'Object detection, image processing, visual intelligence',
+    description: 'Real-time YOLO detection, pose estimation, and OpenCV pipelines',
     icon: 'Eye',
-    connections: ['ai-ml', 'uas', 'autonomous'],
-  },
-  {
-    id: 'autonomous',
-    label: 'Autonomous Systems',
-    description: 'Self-governing systems, decision-making, control',
-    icon: 'Zap',
-    connections: ['ai-ml', 'cv', 'uas', 'distributed'],
+    connections: ['edge-ai', 'uas', 'ai-ml'],
   },
   {
     id: 'uas',
-    label: 'UAS / Robotics',
-    description: 'Unmanned aerial systems, flight systems, robotics',
+    label: 'UAS & Flight Systems',
+    description: 'Platform calibration, payload drops, GCS mission control, and field deployments',
     icon: 'Plane',
-    connections: ['autonomous', 'cv', 'embedded'],
+    connections: ['cv', 'edge-ai', 'embedded'],
   },
   {
-    id: 'iot',
-    label: 'IoT',
-    description: 'Connected devices, sensor networks, edge computing',
-    icon: 'Wifi',
-    connections: ['embedded', 'agriculture', 'distributed'],
+    id: 'edge-ai',
+    label: 'Edge AI Deployment',
+    description: 'Deploying neural vision and tracking models directly onto Raspberry Pi',
+    icon: 'Cpu',
+    connections: ['cv', 'uas', 'embedded'],
   },
   {
-    id: 'distributed',
-    label: 'Distributed Systems',
-    description: 'Mesh networks, P2P, distributed computing',
-    icon: 'Network',
-    connections: ['autonomous', 'iot', 'uas'],
+    id: 'genai',
+    label: 'Generative AI & RAG',
+    description: 'LangChain pipelines, FAISS vector search, and grounded LLM architectures',
+    icon: 'Brain',
+    connections: ['ai-ml', 'backend'],
   },
   {
     id: 'embedded',
-    label: 'Embedded Systems',
-    description: 'Microcontrollers, firmware, hardware interfaces',
+    label: 'Embedded & IoT Systems',
+    description: 'Arduino, sensor arrays, motor thrust measurement, and solar tracking',
     icon: 'CircuitBoard',
-    connections: ['uas', 'iot', 'agriculture'],
+    connections: ['uas', 'edge-ai', 'agriculture'],
   },
   {
     id: 'agriculture',
     label: 'Agriculture Automation',
-    description: 'Smart farming, precision agriculture, crop intelligence',
+    description: 'Sensing clusters, smart irrigation, and field diagnostic intelligence',
     icon: 'Sprout',
-    connections: ['ai-ml', 'iot', 'embedded'],
+    connections: ['embedded', 'cv', 'edge-ai'],
   },
 ];

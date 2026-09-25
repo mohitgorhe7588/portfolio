@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Mail, ArrowUpRight, Copy, Check } from 'lucide-react';
+import { Mail, Phone, ArrowUpRight, Copy, Check, MapPin } from 'lucide-react';
 import { useState } from 'react';
 
 function GithubIcon({ className = 'w-4 h-4' }: { className?: string }) {
@@ -25,61 +25,96 @@ function LinkedinIcon({ className = 'w-4 h-4' }: { className?: string }) {
 }
 
 export default function Contact() {
-  const [copied, setCopied] = useState(false);
-  const email = 'mohitgorhe122@gmail.com';
+  const [copiedEmail, setCopiedEmail] = useState(false);
+  const [copiedPhone, setCopiedPhone] = useState(false);
 
-  const copyToClipboard = () => {
+  const email = 'mohitgorhe122@gmail.com';
+  const phone = '+91 9307572607';
+
+  const copyEmail = () => {
     navigator.clipboard.writeText(email);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    setCopiedEmail(true);
+    setTimeout(() => setCopiedEmail(false), 2000);
+  };
+
+  const copyPhone = () => {
+    navigator.clipboard.writeText(phone);
+    setCopiedPhone(true);
+    setTimeout(() => setCopiedPhone(false), 2000);
   };
 
   return (
-    <section id="contact" className="relative py-24 sm:py-32 border-t border-border-primary/60" aria-label="Contact">
+    <section id="contact" className="relative py-24 sm:py-32 bg-white" aria-label="Contact">
       <div className="section-container">
         <div className="section-label">Communications Channel</div>
         <div className="max-w-3xl">
-          <h2 className="text-3xl sm:text-5xl font-mono font-bold text-text-primary tracking-tight mb-4">
+          <h2 className="text-3xl sm:text-5xl font-mono font-bold text-black tracking-tight mb-4">
             Initialize Connection
           </h2>
-          <p className="text-text-secondary text-base sm:text-lg leading-relaxed mb-12">
-            Interested in discussing autonomous systems, UAS integration, distributed mesh
-            networks, or agricultural AI? Reach out via direct channels.
+          <p className="text-zinc-600 text-base sm:text-lg leading-relaxed mb-12">
+            Available for professional inquiries in Computer Vision, UAS Integration, Edge AI deployment,
+            and autonomous robotics. Reach out directly.
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Main Direct Channel Card (7 cols) */}
-          <div className="lg:col-span-7 card p-6 sm:p-8 border-border-primary bg-bg-surface">
-            <div className="font-mono text-xs text-zinc-300 uppercase tracking-wider mb-6 flex items-center justify-between">
-              <span>PRIMARY DIRECT DISPATCH</span>
-              <span className="flex items-center gap-1.5 text-white">
-                <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
-                ACCEPTING INQUIRIES
+          <div className="lg:col-span-7 card p-6 sm:p-8 border border-zinc-200 bg-white shadow-sm">
+            <div className="font-mono text-xs text-black uppercase tracking-wider mb-6 flex items-center justify-between pb-3 border-b border-zinc-100 font-bold">
+              <span>DIRECT DISPATCH CONTACT</span>
+              <span className="flex items-center gap-1.5 text-black">
+                <span className="w-2 h-2 rounded-full bg-black animate-pulse" />
+                AVAILABLE FOR INQUIRIES
               </span>
             </div>
 
-            <div className="p-4 sm:p-6 rounded-xl border border-border-subtle bg-bg-primary/90 mb-6">
-              <div className="font-mono text-xs text-text-muted mb-1">EMAIL ADDRESS</div>
+            {/* Email Box */}
+            <div className="p-4 sm:p-5 rounded-xl border border-zinc-200 bg-zinc-50 mb-4">
+              <div className="font-mono text-xs text-zinc-500 mb-1 font-medium">PRIMARY EMAIL</div>
               <div className="flex items-center justify-between gap-4">
-                <span className="font-mono text-base sm:text-xl font-bold text-white break-all">
+                <a
+                  href={`mailto:${email}`}
+                  className="font-mono text-base sm:text-xl font-bold text-black hover:underline break-all"
+                >
                   {email}
-                </span>
+                </a>
                 <button
-                  onClick={copyToClipboard}
-                  className="flex-shrink-0 p-2.5 rounded-lg border border-border-primary hover:border-white hover:text-white transition-colors text-text-secondary bg-bg-surface cursor-pointer"
+                  onClick={copyEmail}
+                  className="flex-shrink-0 p-2.5 rounded-lg border border-zinc-300 hover:border-black hover:bg-black hover:text-white transition-colors text-black bg-white cursor-pointer"
                   title="Copy email to clipboard"
                   aria-label="Copy email address"
                 >
-                  {copied ? <Check size={18} className="text-white" /> : <Copy size={18} />}
+                  {copiedEmail ? <Check size={18} /> : <Copy size={18} />}
                 </button>
               </div>
             </div>
 
-            <div className="flex flex-wrap gap-4">
+            {/* Phone Box (from CV) */}
+            <div className="p-4 sm:p-5 rounded-xl border border-zinc-200 bg-zinc-50 mb-6">
+              <div className="font-mono text-xs text-zinc-500 mb-1 font-medium">PHONE / WHATSAPP</div>
+              <div className="flex items-center justify-between gap-4">
+                <a
+                  href={`tel:${phone.replace(/\s+/g, '')}`}
+                  className="font-mono text-base sm:text-xl font-bold text-black hover:underline"
+                >
+                  {phone}
+                </a>
+                <button
+                  onClick={copyPhone}
+                  className="flex-shrink-0 p-2.5 rounded-lg border border-zinc-300 hover:border-black hover:bg-black hover:text-white transition-colors text-black bg-white cursor-pointer"
+                  title="Copy phone number to clipboard"
+                  aria-label="Copy phone number"
+                >
+                  {copiedPhone ? <Check size={18} /> : <Copy size={18} />}
+                </button>
+              </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex flex-wrap gap-3.5">
               <a
                 href={`mailto:${email}`}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-white text-black font-mono text-sm font-semibold hover:bg-zinc-200 transition-all shadow-[0_0_20px_rgba(255,255,255,0.15)]"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-black text-white font-mono text-sm font-semibold hover:bg-zinc-800 transition-all shadow-sm"
               >
                 <Mail size={16} />
                 Send Email
@@ -89,7 +124,7 @@ export default function Contact() {
                 href="https://linkedin.com/in/mohitgorhe"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-border-primary hover:border-white hover:text-white text-text-secondary font-mono text-sm transition-all"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-lg border border-zinc-300 hover:border-black hover:bg-zinc-50 text-black font-mono text-sm font-medium transition-all"
               >
                 <LinkedinIcon className="w-4 h-4" />
                 LinkedIn
@@ -100,7 +135,7 @@ export default function Contact() {
                 href="https://github.com/mohitgorhe"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-border-primary hover:border-white hover:text-white text-text-secondary font-mono text-sm transition-all"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-lg border border-zinc-300 hover:border-black hover:bg-zinc-50 text-black font-mono text-sm font-medium transition-all"
               >
                 <GithubIcon className="w-4 h-4" />
                 GitHub
@@ -111,35 +146,37 @@ export default function Contact() {
 
           {/* Telemetry Status Box (5 cols) */}
           <div className="lg:col-span-5 space-y-4">
-            <div className="p-6 rounded-xl border border-border-primary bg-bg-surface/50 font-mono text-xs space-y-4">
-              <div className="text-text-muted flex items-center justify-between">
-                <span>COMMUNICATION STATUS</span>
-                <span className="text-white">ONLINE</span>
+            <div className="p-6 rounded-xl border border-zinc-200 bg-zinc-50 font-mono text-xs space-y-4">
+              <div className="text-black flex items-center justify-between font-bold pb-2 border-b border-zinc-200">
+                <span>COMMUNICATION TELEMETRY</span>
+                <span className="text-zinc-600">STABLE</span>
               </div>
-              <div className="h-px bg-border-subtle" />
-              <div className="space-y-2 text-text-secondary">
+              <div className="space-y-2.5 text-zinc-700">
                 <div className="flex justify-between">
-                  <span className="text-text-muted">LOCATION:</span>
-                  <span className="text-white">India [IST / UTC+5:30]</span>
+                  <span className="text-zinc-500">BASE LOCATION:</span>
+                  <span className="text-black font-semibold">Nashik, Maharashtra, India</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-text-muted">PROFESSIONAL ROLE:</span>
-                  <span className="text-white">UAS Integration Engineer @ Eulerian Bots</span>
+                  <span className="text-zinc-500">CURRENT POSITION:</span>
+                  <span className="text-black font-semibold">UAS Integration Engineer</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-text-muted">FREELANCE STATUS:</span>
-                  <span className="text-white">Available for IoT / Embedded / AI Systems</span>
+                  <span className="text-zinc-500">ORGANIZATION:</span>
+                  <span className="text-black font-semibold">Eulerian Bots</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-text-muted">ENCRYPTION:</span>
-                  <span className="text-zinc-400">Standard TLS</span>
+                  <span className="text-zinc-500">TIMEZONE:</span>
+                  <span className="text-black font-semibold">IST [UTC+5:30]</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-zinc-500">FREELANCE STATUS:</span>
+                  <span className="text-black font-semibold">Open for IoT / Embedded / AI</span>
                 </div>
               </div>
             </div>
 
-            <div className="p-4 rounded-xl border border-border-subtle bg-bg-primary/40 font-mono text-xs text-text-muted leading-relaxed">
-              &gt; Technical collaboration, autonomous systems R&amp;D, precision agriculture, and
-              distributed mesh architectures.
+            <div className="p-4 rounded-xl border border-zinc-200 bg-white font-mono text-xs text-zinc-600 leading-relaxed shadow-2xs">
+              &gt; Open for tactical UAS R&amp;D, Computer Vision systems on edge silicon, and autonomous perception pipelines.
             </div>
           </div>
         </div>

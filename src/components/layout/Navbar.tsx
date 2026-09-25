@@ -7,7 +7,8 @@ import { Menu, X } from 'lucide-react';
 const navLinks = [
   { label: 'Projects', href: '#projects' },
   { label: 'Experience', href: '#experience' },
-  { label: 'Tech Stack', href: '#tech-stack' },
+  { label: 'Skills', href: '#tech-stack' },
+  { label: 'Domains', href: '#identity' },
   { label: 'About', href: '#about' },
   { label: 'Contact', href: '#contact' },
 ];
@@ -24,7 +25,6 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu on resize
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 768) setIsMobileMenuOpen(false);
@@ -35,30 +35,30 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
         isScrolled
-          ? 'bg-bg-primary/90 backdrop-blur-md border-b border-border-primary'
-          : 'bg-transparent'
+          ? 'bg-white/95 backdrop-blur-md border-b border-zinc-200 shadow-2xs'
+          : 'bg-white/80 backdrop-blur-xs border-b border-transparent'
       }`}
       role="navigation"
       aria-label="Main navigation"
     >
       <div className="section-container flex items-center justify-between h-16">
-        {/* Logo / Name */}
+        {/* Brand / Name */}
         <a
           href="#hero"
-          className="font-mono text-sm font-semibold tracking-wider text-white hover:text-zinc-300 transition-colors"
+          className="font-mono text-sm font-bold tracking-wider text-black hover:opacity-70 transition-opacity"
         >
-          MG<span className="text-white">.</span>
+          MOHIT GORHE<span className="text-zinc-400">.</span>
         </a>
 
         {/* Desktop Links */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-7">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="font-mono text-xs tracking-wide text-zinc-400 hover:text-white transition-colors duration-200 uppercase"
+              className="font-mono text-xs tracking-wider text-zinc-600 hover:text-black transition-colors duration-150 uppercase font-semibold"
             >
               {link.label}
             </a>
@@ -66,14 +66,14 @@ export default function Navbar() {
         </div>
 
         {/* Status Indicator */}
-        <div className="hidden md:flex items-center gap-2">
+        <div className="hidden md:flex items-center gap-2.5">
           <div className="status-dot" />
-          <span className="font-mono text-xs text-zinc-400">Available</span>
+          <span className="font-mono text-xs text-zinc-600 font-medium">AVAILABLE</span>
         </div>
 
         {/* Mobile Menu Toggle */}
         <button
-          className="md:hidden p-2 text-zinc-400 hover:text-white transition-colors cursor-pointer"
+          className="md:hidden p-2 text-black hover:text-zinc-600 transition-colors cursor-pointer"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={isMobileMenuOpen}
@@ -82,7 +82,7 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Dropdown */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
@@ -90,22 +90,24 @@ export default function Navbar() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden bg-bg-primary/98 backdrop-blur-md border-b border-border-primary overflow-hidden"
+            className="md:hidden bg-white border-b border-zinc-200 overflow-hidden shadow-lg"
           >
-            <div className="section-container py-4 flex flex-col gap-4">
+            <div className="section-container py-5 flex flex-col gap-3">
               {navLinks.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
-                  className="font-mono text-sm text-zinc-400 hover:text-white transition-colors py-2"
+                  className="font-mono text-sm text-zinc-700 hover:text-black font-semibold py-1.5"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.label}
                 </a>
               ))}
-              <div className="flex items-center gap-2 pt-2 border-t border-border-primary">
+              <div className="flex items-center gap-2 pt-3 border-t border-zinc-100 mt-2">
                 <div className="status-dot" />
-                <span className="font-mono text-xs text-zinc-400">Available</span>
+                <span className="font-mono text-xs text-zinc-600 font-medium">
+                  UAS Integration Engineer • Eulerian Bots
+                </span>
               </div>
             </div>
           </motion.div>

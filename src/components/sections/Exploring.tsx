@@ -14,40 +14,40 @@ interface ExplorationTopic {
 
 const explorations: ExplorationTopic[] = [
   {
-    title: 'Distributed Swarm Consensus Protocols',
-    category: 'Swarm Robotics & Networks',
-    icon: Network,
-    description:
-      'Investigating decentralized consensus algorithms and peer-to-peer state synchronization across high-mobility UAV mesh networks without single-point leaders.',
-    notes: 'Focusing on low-bandwidth message passing and fault-tolerant topology reconfiguration.',
-    tags: ['P2P Mesh', 'Consensus Algorithms', 'BATMAN-adv', 'UAV Swarms'],
-  },
-  {
-    title: 'Edge AI & Lightweight Vision Models on Companion Hardware',
+    title: 'Edge AI Quantization & Real-time Vision on Raspberry Pi',
     category: 'Edge Intelligence',
     icon: Cpu,
     description:
-      'Benchmarking quantized object detection (YOLOv8/v11, TensorRT, ONNX Runtime) on resource-constrained compute platforms for low-latency target tracking and obstacle awareness.',
+      'Benchmarking quantized object detection (YOLOv8/v11, ONNX Runtime, OpenCV DNN) on resource-constrained compute platforms for low-latency target tracking and obstacle awareness.',
     notes: 'Evaluating thermal envelope, frame-rate consistency, and MAVLink telemetry synchronization.',
-    tags: ['Embedded CV', 'YOLO Quantization', 'TensorRT', 'Edge Inference'],
+    tags: ['Embedded CV', 'YOLO Quantization', 'Raspberry Pi', 'Edge Inference'],
   },
   {
-    title: 'Resilient Microclimate & Soil Telemetry Networks',
-    category: 'IoT & Field Systems',
-    icon: Radio,
-    description:
-      'Experimenting with ultra-low-power radio protocols, sleep cycling, and ruggedized edge nodes for long-range agricultural sensor arrays across remote farmland.',
-    notes: 'Addressing packet loss in dense canopy environments and solar energy harvesting stability.',
-    tags: ['Sub-GHz RF', 'Low-Power Firmware', 'Soil Telemetry', 'Field Deployment'],
-  },
-  {
-    title: 'Integrated Perception-to-Control Pipelines',
-    category: 'Autonomous Systems',
+    title: 'Low-Latency FPV Control & Flight Controller Firmware',
+    category: 'UAS & Flight Systems',
     icon: Compass,
     description:
-      'Deepening coupling between computer vision outputs, state estimation filters, and flight controller command generation for smooth closed-loop tracking behavior.',
-    notes: 'Bridging computer vision detections directly into real-time PID and trajectory control loops.',
-    tags: ['MAVLink Autonomy', 'PID Tuning', 'Control Systems', 'State Estimation'],
+      'Tuning INAV and Betaflight parameters via CLI for aggressive maneuvering stability, payload delivery dynamics, and low-latency analog/digital video transmission.',
+    notes: 'Validating control loop response times and fail-safe triggers during sudden wind shear.',
+    tags: ['INAV', 'Betaflight', 'PID Tuning', 'FPV RF'],
+  },
+  {
+    title: 'Integrated Perception-to-Actuation Pipelines',
+    category: 'Autonomous Systems',
+    icon: Network,
+    description:
+      'Deepening coupling between computer vision outputs (CSRT tracking, pose estimation) and physical actuators (solenoids, payload releases, servo gimbals).',
+    notes: 'Bridging vision detections directly into real-time closed-loop actuation workflows.',
+    tags: ['Computer Vision', 'Actuator Control', 'Closed-Loop Systems'],
+  },
+  {
+    title: 'Sub-GHz Telemetry & Resilient Field Sensor Nodes',
+    category: 'IoT & Telemetry',
+    icon: Radio,
+    description:
+      'Experimenting with low-power radio communication and solar harvesting for long-range agricultural sensor arrays across remote farmland.',
+    notes: 'Mitigating packet loss across agricultural crop canopies and testing soil moisture sensor lifespan.',
+    tags: ['IoT', 'Arduino', 'Sensor Networks', 'Field Deployment'],
   },
 ];
 
@@ -55,24 +55,24 @@ export default function Exploring() {
   return (
     <section
       id="exploring"
-      className="relative py-24 sm:py-32 border-t border-border-primary/50"
+      className="relative py-24 sm:py-32 bg-white border-b border-zinc-200"
       aria-label="Currently exploring"
     >
       <div className="section-container">
-        <div className="section-label">Active Research & Tinkering</div>
+        <div className="section-label">Active Research &amp; Tinkering</div>
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
           <div>
-            <h2 className="text-3xl sm:text-4xl font-mono font-bold text-text-primary tracking-tight mb-4">
+            <h2 className="text-3xl sm:text-5xl font-mono font-bold text-black tracking-tight mb-4">
               Currently Exploring
             </h2>
-            <p className="max-w-2xl text-text-secondary text-base leading-relaxed">
-              Technical domains, experimental architectures, and research vectors currently on my
-              engineering bench.
+            <p className="max-w-3xl text-zinc-600 text-base sm:text-lg leading-relaxed">
+              Active engineering vectors, hardware experiments, and software pipelines currently on my
+              workbench.
             </p>
           </div>
-          <div className="inline-flex items-center gap-2 font-mono text-xs text-text-muted">
-            <Sparkles size={14} className="text-white" />
-            <span>ACTIVE FOCUS AREAS</span>
+          <div className="inline-flex items-center gap-2 font-mono text-xs text-black font-semibold bg-zinc-100 px-3 py-1.5 rounded-full border border-zinc-200">
+            <Sparkles size={14} className="text-black" />
+            <span>BENCH EXPERIMENTS</span>
           </div>
         </div>
 
@@ -85,36 +85,36 @@ export default function Exploring() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.4 }}
-                className="card p-6 sm:p-8 flex flex-col justify-between hover:border-white/40 transition-colors"
+                transition={{ delay: index * 0.08, duration: 0.4 }}
+                className="card p-6 sm:p-8 bg-white border border-zinc-200 hover:border-black transition-all flex flex-col justify-between"
               >
                 <div>
-                  <div className="flex items-center justify-between gap-3 mb-4">
-                    <span className="font-mono text-xs text-zinc-400 uppercase tracking-wider">
+                  <div className="flex items-center justify-between gap-3 mb-4 pb-3 border-b border-zinc-100">
+                    <span className="font-mono text-xs text-zinc-500 uppercase tracking-wider font-semibold">
                       {item.category}
                     </span>
-                    <Icon size={18} className="text-white" />
+                    <Icon size={18} className="text-black" />
                   </div>
 
-                  <h3 className="font-mono text-lg sm:text-xl font-bold text-white mb-3 leading-snug">
+                  <h3 className="font-mono text-lg sm:text-xl font-bold text-black mb-3 leading-snug">
                     {item.title}
                   </h3>
 
-                  <p className="text-text-secondary text-sm leading-relaxed mb-4">
+                  <p className="text-zinc-700 text-sm leading-relaxed mb-5 font-sans">
                     {item.description}
                   </p>
 
-                  <div className="p-3 rounded-lg bg-bg-primary/50 border border-border-subtle font-mono text-xs text-zinc-400 mb-6">
-                    <span className="text-white font-semibold mr-2">Bench Note:</span>
+                  <div className="p-3.5 rounded-lg bg-zinc-50 border border-zinc-200 font-mono text-xs text-zinc-700 mb-6">
+                    <span className="text-black font-bold mr-2">Bench Note:</span>
                     {item.notes}
                   </div>
                 </div>
 
-                <div className="flex flex-wrap gap-2 pt-4 border-t border-border-subtle">
+                <div className="flex flex-wrap gap-2 pt-4 border-t border-zinc-100">
                   {item.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-2.5 py-1 rounded font-mono text-xs text-zinc-300 bg-bg-surface border border-border-primary"
+                      className="px-2.5 py-1 rounded font-mono text-xs text-zinc-800 bg-zinc-50 border border-zinc-200 font-medium"
                     >
                       {tag}
                     </span>

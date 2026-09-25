@@ -1,51 +1,50 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, ArrowRight, ShieldCheck, Cpu, Terminal } from 'lucide-react';
 
 const systemLines = [
-  'SYS.INIT: MOHIT_GORHE',
-  'DOMAIN: AI × Autonomous Systems × IoT × Engineering',
-  'STATUS: ACTIVE',
+  'SYS.ID: MOHIT_RAJENDRA_GORHE',
+  'ROLE: AI & DATA SCIENCE ENGINEER',
+  'FOCUS: COMPUTER VISION × EDGE AI × UAS',
+  'STATUS: ACTIVE / DEPLOYED',
 ];
 
 export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-[92vh] flex items-center justify-center overflow-hidden bg-white pt-24 pb-16 border-b border-zinc-200"
       aria-label="Hero introduction"
     >
-      {/* Background layers */}
-      <div className="absolute inset-0 bg-bg-primary" />
-      <div className="absolute inset-0 dot-grid opacity-30" />
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            'radial-gradient(ellipse 80% 50% at 50% 0%, rgba(255, 255, 255, 0.05) 0%, transparent 60%)',
-        }}
-      />
+      {/* Background dot grid - subtle technical paper texture */}
+      <div className="absolute inset-0 dot-grid opacity-60 pointer-events-none" />
 
-      {/* Corner coordinates — decorative telemetry */}
-      <div className="absolute top-24 left-6 lg:left-16 font-mono text-xs text-text-muted hidden sm:block select-none" aria-hidden="true">
-        <div className="flex flex-col gap-1 opacity-40">
-          <span>LAT 00.0000°</span>
-          <span>LNG 00.0000°</span>
-          <span>ALT ████ m</span>
+      {/* Decorative Corner Metadata */}
+      <div
+        className="absolute top-24 left-6 lg:left-16 font-mono text-[11px] text-zinc-500 hidden sm:block select-none"
+        aria-hidden="true"
+      >
+        <div className="flex flex-col gap-1 border-l-2 border-black pl-3">
+          <span className="font-semibold text-black">MOHIT RAJENDRA GORHE</span>
+          <span>DISCIPLINE: AI & DATA SCIENCE</span>
+          <span>DEPLOYMENTS: LEH / JAIPUR / NASHIK</span>
         </div>
       </div>
 
       {/* System status — right side */}
-      <div className="absolute top-24 right-6 lg:right-16 font-mono text-xs hidden sm:block select-none" aria-hidden="true">
-        <div className="flex flex-col items-end gap-1 opacity-40">
+      <div
+        className="absolute top-24 right-6 lg:right-16 font-mono text-[11px] hidden sm:block select-none"
+        aria-hidden="true"
+      >
+        <div className="flex flex-col items-end gap-1 border-r-2 border-black pr-3">
           {systemLines.map((line, i) => (
             <motion.span
               key={i}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 0.4, x: 0 }}
-              transition={{ delay: 0.8 + i * 0.2, duration: 0.5 }}
-              className="text-text-muted"
+              initial={{ opacity: 0, x: 15 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.3 + i * 0.1, duration: 0.4 }}
+              className="text-zinc-600"
             >
               {line}
             </motion.span>
@@ -55,105 +54,113 @@ export default function Hero() {
 
       {/* Main content */}
       <div className="relative z-10 section-container text-center flex flex-col items-center">
-        {/* System label */}
+        {/* Label */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="mb-8"
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="mb-6"
         >
-          <span className="inline-flex items-center gap-3 font-mono text-xs tracking-widest text-white uppercase">
-            <span className="w-8 h-px bg-white/40" />
+          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-black bg-zinc-50 font-mono text-xs font-semibold text-black tracking-widest uppercase">
+            <span className="w-2 h-2 rounded-full bg-black animate-pulse" />
             AI & Data Science Engineer
-            <span className="w-8 h-px bg-white/40" />
           </span>
         </motion.div>
 
-        {/* Name */}
+        {/* Primary Name */}
         <motion.h1
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.4 }}
-          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-mono font-bold tracking-tight text-white leading-none"
+          transition={{ duration: 0.6, delay: 0.25 }}
+          className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-mono font-black tracking-tight text-black leading-none"
         >
           MOHIT
           <br />
-          <span className="bg-gradient-to-b from-white via-zinc-300 to-zinc-600 bg-clip-text text-transparent">
+          <span className="text-black underline decoration-zinc-300 decoration-4 underline-offset-8">
             GORHE
           </span>
         </motion.h1>
 
-        {/* Supporting message */}
+        {/* Core Narrative / CV Summary */}
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.7 }}
-          className="mt-8 max-w-2xl text-lg sm:text-xl text-text-secondary leading-relaxed"
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="mt-8 max-w-3xl text-lg sm:text-xl text-zinc-700 leading-relaxed font-sans"
         >
-          Building intelligent, autonomous and connected systems
-          <span className="text-text-muted">
-            {' '}— where software, intelligence, networks, and physical machines interact.
-          </span>
+          Building intelligent, autonomous and connected physical systems — specializing in{' '}
+          <strong className="text-black font-semibold">Computer Vision</strong> (YOLO, OpenCV, pose estimation),{' '}
+          <strong className="text-black font-semibold">Edge AI</strong> on companion computers (Raspberry Pi), and{' '}
+          <strong className="text-black font-semibold">UAS Integration</strong> for agricultural &amp; defense platforms.
         </motion.p>
 
-        {/* Domain tags */}
+        {/* Technical Domain Badges */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.9 }}
-          className="mt-8 flex flex-wrap justify-center gap-3"
+          transition={{ duration: 0.5, delay: 0.55 }}
+          className="mt-8 flex flex-wrap justify-center gap-2 max-w-2xl"
         >
-          {['AI / ML', 'Autonomous Systems', 'UAS', 'IoT', 'Computer Vision', 'Agriculture Automation'].map(
-            (domain) => (
-              <span
-                key={domain}
-                className="px-3 py-1.5 font-mono text-xs text-zinc-300 border border-border-primary rounded-md bg-bg-surface/50 hover:border-white/50 hover:text-white transition-all duration-200"
-              >
-                {domain}
-              </span>
-            )
-          )}
+          {[
+            'Computer Vision & YOLO',
+            'Edge AI (Raspberry Pi)',
+            'UAS Integration',
+            'Flight Controller Tuning',
+            'GenAI & LangChain',
+            'Agriculture Automation',
+          ].map((domain) => (
+            <span
+              key={domain}
+              className="px-3 py-1 font-mono text-xs text-zinc-800 border border-zinc-300 rounded bg-white shadow-2xs font-medium"
+            >
+              {domain}
+            </span>
+          ))}
         </motion.div>
 
-        {/* CTA */}
+        {/* Action CTAs */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1.1 }}
-          className="mt-12 flex items-center gap-4"
+          transition={{ duration: 0.5, delay: 0.7 }}
+          className="mt-10 flex flex-wrap items-center justify-center gap-4"
         >
           <a
             href="#projects"
-            className="inline-flex items-center gap-2 px-6 py-3 font-mono text-sm text-black bg-white rounded-lg hover:bg-zinc-200 transition-colors font-medium cursor-pointer shadow-[0_0_20px_rgba(255,255,255,0.15)]"
+            className="inline-flex items-center gap-2 px-7 py-3.5 font-mono text-sm text-white bg-black rounded-lg hover:bg-zinc-800 transition-all font-semibold shadow-md cursor-pointer"
           >
-            View Projects
+            Explore Projects
+            <ArrowRight size={16} />
+          </a>
+          <a
+            href="#experience"
+            className="inline-flex items-center gap-2 px-7 py-3.5 font-mono text-sm text-black border border-black rounded-lg hover:bg-zinc-100 transition-all font-semibold cursor-pointer"
+          >
+            Work Experience
           </a>
           <a
             href="#contact"
-            className="inline-flex items-center gap-2 px-6 py-3 font-mono text-sm text-zinc-300 border border-border-primary rounded-lg hover:border-white hover:text-white transition-all cursor-pointer"
+            className="inline-flex items-center gap-2 px-7 py-3.5 font-mono text-sm text-zinc-600 hover:text-black border border-zinc-300 rounded-lg hover:border-black transition-all cursor-pointer"
           >
             Contact
           </a>
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Subtle Scroll Down Prompt */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 0.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        transition={{ delay: 1.2, duration: 0.5 }}
+        className="absolute bottom-4 left-1/2 -translate-x-1/2"
       >
         <motion.div
-          animate={{ y: [0, 8, 0] }}
+          animate={{ y: [0, 6, 0] }}
           transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
         >
-          <ChevronDown size={20} className="text-text-muted" />
+          <ChevronDown size={22} className="text-zinc-400" />
         </motion.div>
       </motion.div>
-
-      {/* Bottom border gradient */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border-primary to-transparent" />
     </section>
   );
 }
