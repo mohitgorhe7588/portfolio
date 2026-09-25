@@ -1,69 +1,54 @@
 export default function Footer() {
+  const currentYear = new Date().getFullYear();
+  const linkedinUrl = 'https://www.linkedin.com/in/mohit-gorhe-65046420b/';
+  const githubUrl = 'https://github.com/mohitgorhe7588';
+
   return (
-    <footer className="border-t border-zinc-200 bg-zinc-50" role="contentinfo">
-      <div className="section-container py-12">
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-          {/* Left */}
-          <div className="flex flex-col gap-1.5">
-            <span className="font-mono text-base font-bold text-black tracking-tight">
-              MOHIT RAJENDRA GORHE
-            </span>
-            <span className="font-mono text-xs text-zinc-600">
-              AI &amp; Data Science Engineer • UAS Integration Engineer @ Eulerian Bots
+    <footer className="border-t border-zinc-200 bg-white py-12 text-sm text-zinc-600">
+      <div className="section-container">
+        <div className="flex flex-col md:flex-row items-start md:items-baseline justify-between gap-6">
+          <div className="space-y-1">
+            <span className="text-zinc-950 font-medium block">Mohit Rajendra Gorhe</span>
+            <span className="text-xs text-zinc-500 font-mono">
+              AI &amp; Data Science Engineer • UAS Integration at Eulerian Bots
             </span>
           </div>
 
-          {/* Center */}
-          <div className="font-mono text-xs text-zinc-500 max-w-sm">
-            Building systems where software, intelligence, networks, and physical machines interact.
-          </div>
-
-          {/* Right — Links */}
-          <div className="flex flex-wrap items-center gap-6">
+          <div className="flex flex-wrap items-center gap-6 text-xs font-mono">
             <a
-              href="https://github.com/mohitgorhe"
+              href={githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-mono text-xs text-zinc-600 hover:text-black font-semibold transition-colors"
-              aria-label="GitHub Profile"
+              className="text-zinc-600 hover:text-black transition-colors"
             >
               GitHub
             </a>
             <a
-              href="https://linkedin.com/in/mohitgorhe"
+              href={linkedinUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-mono text-xs text-zinc-600 hover:text-black font-semibold transition-colors"
-              aria-label="LinkedIn Profile"
+              className="text-zinc-600 hover:text-black transition-colors"
             >
               LinkedIn
             </a>
             <a
               href="mailto:mohitgorhe122@gmail.com"
-              className="font-mono text-xs text-zinc-600 hover:text-black font-semibold transition-colors"
-              aria-label="Email"
+              className="text-zinc-600 hover:text-black transition-colors"
             >
               mohitgorhe122@gmail.com
             </a>
             <a
               href="tel:+919307572607"
-              className="font-mono text-xs text-zinc-600 hover:text-black font-semibold transition-colors"
-              aria-label="Phone"
+              className="text-zinc-600 hover:text-black transition-colors"
             >
               +91 9307572607
             </a>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="mt-10 pt-6 border-t border-zinc-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs font-mono text-zinc-500">
-          <span>
-            © {new Date().getFullYear()} Mohit Rajendra Gorhe. All engineering content verified.
-          </span>
-          <span className="flex items-center gap-2 text-black font-medium">
-            <span className="inline-block w-2 h-2 rounded-full bg-black animate-pulse" />
-            SYS.STATUS: OPERATIONAL
-          </span>
+        <div className="mt-8 pt-6 border-t border-zinc-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs font-mono text-zinc-400">
+          <span>© {currentYear} Mohit Rajendra Gorhe</span>
+          <span>Nashik, Maharashtra, India</span>
         </div>
       </div>
     </footer>

@@ -1,73 +1,44 @@
 @import "tailwindcss";
 
-/* ─── White & Black (Light Editorial) Design System Tokens ───── */
+/* ─── Strict Dual-Color (White & Black) Design Tokens ───── */
 :root {
-  /* Backgrounds: Crisp Technical Paper / Minimal Command Center */
+  /* Strict Dual Color: Pure White & Deep Black */
   --bg-primary: #ffffff;
-  --bg-secondary: #fbfbfb;
+  --bg-secondary: #fafafa;
   --bg-surface: #ffffff;
-  --bg-surface-hover: #f4f4f5;
-  --bg-elevated: #f4f4f5;
+  --bg-subtle: #f4f4f5;
 
-  /* Borders: Sharp Technical Outlines */
-  --border-primary: #e4e4e7;
-  --border-subtle: #f4f4f5;
-  --border-strong: #18181b;
-  --border-accent: rgba(0, 0, 0, 0.85);
+  /* Single Muted Accent: Graphite / Zinc */
+  --accent-muted: #71717a;
+  --accent-subtle: #a1a1aa;
+  --border-hairline: #e4e4e7;
+  --border-strong: #09090b;
 
-  /* Monochrome Contrast Accents */
-  --accent-black: #000000;
-  --accent-dark: #18181b;
-  --accent-zinc: #71717a;
-  --accent-muted: rgba(0, 0, 0, 0.6);
-  --accent-dim: rgba(0, 0, 0, 0.05);
-
-  /* Legacy variable mappings to pure White & Black */
-  --accent-cyan: #000000;
-  --accent-cyan-muted: #27272a;
-  --accent-cyan-dim: rgba(0, 0, 0, 0.05);
-  --accent-amber: #18181b;
-  --accent-amber-muted: #52525b;
-  --accent-amber-dim: rgba(0, 0, 0, 0.04);
-  --accent-green: #000000;
-  --accent-green-dim: rgba(0, 0, 0, 0.06);
-  --accent-red: #27272a;
-
-  /* Text: High Contrast Black & Grayscale */
+  /* Typography */
   --text-primary: #09090b;
   --text-secondary: #52525b;
   --text-muted: #71717a;
-  --text-accent: #000000;
 
-  /* Gradients: Subtle Paper Elevation */
-  --gradient-surface: linear-gradient(180deg, #ffffff 0%, #fbfbfb 100%);
-  --gradient-hero: radial-gradient(ellipse at 50% 0%, rgba(0, 0, 0, 0.03) 0%, transparent 70%);
+  /* Fonts */
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-mono: 'JetBrains Mono', monospace;
 }
 
 @theme inline {
   --color-bg-primary: var(--bg-primary);
   --color-bg-secondary: var(--bg-secondary);
   --color-bg-surface: var(--bg-surface);
-  --color-bg-surface-hover: var(--bg-surface-hover);
-  --color-bg-elevated: var(--bg-elevated);
-  --color-border-primary: var(--border-primary);
-  --color-border-subtle: var(--border-subtle);
-  --color-border-accent: var(--border-accent);
-  --color-accent-cyan: var(--accent-black);
-  --color-accent-cyan-muted: var(--accent-cyan-muted);
-  --color-accent-cyan-dim: var(--accent-cyan-dim);
-  --color-accent-amber: var(--accent-amber);
-  --color-accent-amber-muted: var(--accent-amber-muted);
-  --color-accent-amber-dim: var(--accent-amber-dim);
-  --color-accent-green: var(--accent-green);
-  --color-accent-green-dim: var(--accent-green-dim);
-  --color-accent-red: var(--accent-red);
+  --color-bg-subtle: var(--bg-subtle);
+  --color-accent-muted: var(--accent-muted);
   --color-text-primary: var(--text-primary);
   --color-text-secondary: var(--text-secondary);
   --color-text-muted: var(--text-muted);
-  --color-text-accent: var(--text-accent);
-  --font-sans: var(--font-inter);
-  --font-mono: var(--font-jetbrains-mono);
+  --color-border-hairline: var(--border-hairline);
+  --color-border-strong: var(--border-strong);
+  --font-sans: var(--font-sans);
+  --font-serif: var(--font-serif);
+  --font-mono: var(--font-mono);
 }
 
 /* ─── Global Base ─────────────────────────────────────────── */
@@ -93,25 +64,14 @@ html {
 body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
-  font-family: var(--font-inter, 'Inter', system-ui, -apple-system, sans-serif);
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ─── Light Technical Dot Grid ────────────────────────────── */
-.dot-grid {
-  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.08) 1px, transparent 1px);
-  background-size: 24px 24px;
-}
-
-.dot-grid-fine {
-  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.05) 0.5px, transparent 0.5px);
-  background-size: 16px 16px;
-}
-
-/* ─── Section Layout ──────────────────────────────────────── */
+/* ─── Content Width ───────────────────────────────────────── */
 .section-container {
-  max-width: 80rem;
+  max-width: 82rem;
   margin-left: auto;
   margin-right: auto;
   padding-left: 1.5rem;
@@ -120,81 +80,39 @@ body {
 
 @media (min-width: 640px) {
   .section-container {
-    padding-left: 2rem;
-    padding-right: 2rem;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
   }
 }
 
 @media (min-width: 1024px) {
   .section-container {
-    padding-left: 4rem;
-    padding-right: 4rem;
+    padding-left: 4.5rem;
+    padding-right: 4.5rem;
   }
 }
 
-/* ─── Section Heading ─────────────────────────────────────── */
-.section-label {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-family: var(--font-jetbrains-mono, 'JetBrains Mono', monospace);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: #000000;
-  margin-bottom: 1rem;
+/* ─── Editorial Typography Utilities ─────────────────────── */
+.font-display {
+  font-family: var(--font-serif);
 }
 
-.section-label::before {
-  content: '';
-  display: inline-block;
-  width: 1.5rem;
-  height: 2px;
-  background-color: #000000;
+/* ─── Sharp Rectilinear Geometry — No Bubble Radius, No Shadows ─── */
+* {
+  border-radius: 0;
+  box-shadow: none !important;
 }
 
-/* ─── Card Styles ─────────────────────────────────────────── */
-.card {
-  background: #ffffff;
-  border: 1px solid var(--border-primary);
-  border-radius: 0.75rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
-  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease;
-}
-
-.card:hover {
-  border-color: #000000;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-}
-
-/* ─── Status Indicator ────────────────────────────────────── */
-.status-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background-color: #000000;
-  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.15);
-  animation: pulse-dot 2s ease-in-out infinite;
-}
-
-@keyframes pulse-dot {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.35; transform: scale(0.9); }
-}
-
-/* ─── Terminal / Code Aesthetic ────────────────────────────── */
-.terminal-text {
-  font-family: var(--font-jetbrains-mono, 'JetBrains Mono', monospace);
-  font-size: 0.8125rem;
-  line-height: 1.6;
-  color: var(--text-secondary);
+/* ─── Selection ───────────────────────────────────────────── */
+::selection {
+  background: #09090b;
+  color: #ffffff;
 }
 
 /* ─── Custom Scrollbar ────────────────────────────────────── */
 ::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+  width: 4px;
+  height: 4px;
 }
 
 ::-webkit-scrollbar-track {
@@ -203,22 +121,14 @@ body {
 
 ::-webkit-scrollbar-thumb {
   background: #d4d4d8;
-  border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: #71717a;
 }
 
-/* ─── Selection ───────────────────────────────────────────── */
-::selection {
-  background: #000000;
-  color: #ffffff;
-}
-
-/* ─── Focus Ring ──────────────────────────────────────────── */
+/* ─── Focus ───────────────────────────────────────────────── */
 :focus-visible {
-  outline: 2px solid #000000;
+  outline: 1.5px solid #09090b;
   outline-offset: 2px;
-  border-radius: 4px;
 }

@@ -1,128 +1,83 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { Compass, Radio, Cpu, Network, Sparkles } from 'lucide-react';
-
-interface ExplorationTopic {
-  title: string;
-  category: string;
-  icon: React.ElementType;
-  description: string;
-  notes: string;
-  tags: string[];
-}
-
-const explorations: ExplorationTopic[] = [
+const explorations = [
   {
-    title: 'Edge AI Quantization & Real-time Vision on Raspberry Pi',
-    category: 'Edge Intelligence',
-    icon: Cpu,
+    title: 'Edge AI quantization & real-time vision on Raspberry Pi',
+    category: 'Edge compute',
     description:
-      'Benchmarking quantized object detection (YOLOv8/v11, ONNX Runtime, OpenCV DNN) on resource-constrained compute platforms for low-latency target tracking and obstacle awareness.',
-    notes: 'Evaluating thermal envelope, frame-rate consistency, and MAVLink telemetry synchronization.',
-    tags: ['Embedded CV', 'YOLO Quantization', 'Raspberry Pi', 'Edge Inference'],
+      'Benchmarking quantized object detection models (YOLOv8/v11, ONNX Runtime, OpenCV DNN) on single-board computers for low-latency target tracking and obstacle detection.',
+    notes: 'Testing thermal stability, frame-rate consistency, and MAVLink telemetry synchronization during continuous operation.',
+    tags: ['YOLO Quantization', 'Raspberry Pi', 'OpenCV DNN', 'MAVLink'],
   },
   {
-    title: 'Low-Latency FPV Control & Flight Controller Firmware',
-    category: 'UAS & Flight Systems',
-    icon: Compass,
+    title: 'Low-latency FPV control & flight controller parameter tuning',
+    category: 'Flight systems',
     description:
       'Tuning INAV and Betaflight parameters via CLI for aggressive maneuvering stability, payload delivery dynamics, and low-latency analog/digital video transmission.',
-    notes: 'Validating control loop response times and fail-safe triggers during sudden wind shear.',
+    notes: 'Validating control loop response times and fail-safe triggers during sudden crosswinds.',
     tags: ['INAV', 'Betaflight', 'PID Tuning', 'FPV RF'],
   },
   {
-    title: 'Integrated Perception-to-Actuation Pipelines',
-    category: 'Autonomous Systems',
-    icon: Network,
+    title: 'Coupling computer vision detections directly to physical actuators',
+    category: 'Autonomous actuation',
     description:
-      'Deepening coupling between computer vision outputs (CSRT tracking, pose estimation) and physical actuators (solenoids, payload releases, servo gimbals).',
-    notes: 'Bridging vision detections directly into real-time closed-loop actuation workflows.',
-    tags: ['Computer Vision', 'Actuator Control', 'Closed-Loop Systems'],
+      'Tightly integrating target bounding-box coordinates with physical actuators — including servo payload release mechanisms and dual-axis camera gimbals.',
+    notes: 'Minimizing the latency between visual confirmation and mechanical release.',
+    tags: ['CSRT Tracking', 'GPIO Actuation', 'Servo Control'],
   },
   {
-    title: 'Sub-GHz Telemetry & Resilient Field Sensor Nodes',
-    category: 'IoT & Telemetry',
-    icon: Radio,
+    title: 'Sub-GHz telemetry for remote agricultural sensor nodes',
+    category: 'Telemetry',
     description:
-      'Experimenting with low-power radio communication and solar harvesting for long-range agricultural sensor arrays across remote farmland.',
-    notes: 'Mitigating packet loss across agricultural crop canopies and testing soil moisture sensor lifespan.',
-    tags: ['IoT', 'Arduino', 'Sensor Networks', 'Field Deployment'],
+      'Testing low-power radio communication and solar harvesting for long-range agricultural sensor arrays spread across open fields.',
+    notes: 'Measuring packet loss across dense plant canopies and monitoring probe durability in moist soil.',
+    tags: ['RF Telemetry', 'Microcontrollers', 'Solar Nodes'],
   },
 ];
 
 export default function Exploring() {
   return (
-    <section
-      id="exploring"
-      className="relative py-24 sm:py-32 bg-white border-b border-zinc-200"
-      aria-label="Currently exploring"
-    >
+    <section id="notes" className="py-24 sm:py-36 bg-zinc-50/60" aria-label="Workbench notes">
       <div className="section-container">
-        <div className="section-label">Active Research &amp; Tinkering</div>
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
-          <div>
-            <h2 className="text-3xl sm:text-5xl font-mono font-bold text-black tracking-tight mb-4">
-              Currently Exploring
-            </h2>
-            <p className="max-w-3xl text-zinc-600 text-base sm:text-lg leading-relaxed">
-              Active engineering vectors, hardware experiments, and software pipelines currently on my
-              workbench.
-            </p>
-          </div>
-          <div className="inline-flex items-center gap-2 font-mono text-xs text-black font-semibold bg-zinc-100 px-3 py-1.5 rounded-full border border-zinc-200">
-            <Sparkles size={14} className="text-black" />
-            <span>BENCH EXPERIMENTS</span>
-          </div>
+        {/* Header */}
+        <div className="max-w-2xl mb-16 sm:mb-20">
+          <h2 className="text-3xl sm:text-5xl font-light text-zinc-950 tracking-tight">
+            Workbench notes
+          </h2>
+          <p className="mt-4 text-base sm:text-lg text-zinc-600 leading-relaxed font-light">
+            Current bench experiments, firmware tuning, and software tests.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {explorations.map((item, index) => {
-            const Icon = item.icon;
-            return (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.08, duration: 0.4 }}
-                className="card p-6 sm:p-8 bg-white border border-zinc-200 hover:border-black transition-all flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center justify-between gap-3 mb-4 pb-3 border-b border-zinc-100">
-                    <span className="font-mono text-xs text-zinc-500 uppercase tracking-wider font-semibold">
-                      {item.category}
-                    </span>
-                    <Icon size={18} className="text-black" />
-                  </div>
-
-                  <h3 className="font-mono text-lg sm:text-xl font-bold text-black mb-3 leading-snug">
-                    {item.title}
-                  </h3>
-
-                  <p className="text-zinc-700 text-sm leading-relaxed mb-5 font-sans">
-                    {item.description}
-                  </p>
-
-                  <div className="p-3.5 rounded-lg bg-zinc-50 border border-zinc-200 font-mono text-xs text-zinc-700 mb-6">
-                    <span className="text-black font-bold mr-2">Bench Note:</span>
-                    {item.notes}
-                  </div>
-                </div>
-
-                <div className="flex flex-wrap gap-2 pt-4 border-t border-zinc-100">
-                  {item.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2.5 py-1 rounded font-mono text-xs text-zinc-800 bg-zinc-50 border border-zinc-200 font-medium"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </motion.div>
-            );
-          })}
+        {/* Asymmetric 2-column grid with generous whitespace */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-14">
+          {explorations.map((item) => (
+            <div key={item.title} className="border-t border-zinc-200 pt-6 space-y-3">
+              <span className="text-xs font-mono uppercase text-zinc-400 block">
+                {item.category}
+              </span>
+              <h3 className="text-xl font-medium text-zinc-950 leading-snug">
+                {item.title}
+              </h3>
+              <p className="text-sm text-zinc-600 leading-relaxed">
+                {item.description}
+              </p>
+              <div className="text-xs text-zinc-700 bg-white border border-zinc-200 p-3 font-mono leading-relaxed">
+                <span className="text-zinc-900 font-semibold block mb-0.5">Bench note:</span>
+                {item.notes}
+              </div>
+              <div className="flex flex-wrap gap-1.5 pt-1">
+                {item.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="px-2 py-0.5 text-xs font-mono text-zinc-600 bg-zinc-100"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

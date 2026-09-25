@@ -1,75 +1,50 @@
-import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
-import "./globals.css";
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-jetbrains-mono",
-  subsets: ["latin"],
-  display: "swap",
-});
+import type { Metadata } from 'next';
+import './globals.css';
 
 export const metadata: Metadata = {
   title: {
-    default: "Mohit Gorhe — AI & Data Science Engineer",
-    template: "%s | Mohit Gorhe",
+    default: 'Mohit Gorhe — AI & Data Science Engineer',
+    template: '%s | Mohit Gorhe',
   },
   description:
-    "AI & Data Science Engineer building intelligent, autonomous and connected systems. Working across AI/ML, autonomous systems, UAS, IoT, computer vision, and agriculture automation.",
+    'Portfolio of Mohit Rajendra Gorhe: AI & Data Science Engineer working across computer vision, edge AI, autonomous systems, and UAS flight integration.',
   keywords: [
-    "Mohit Gorhe",
-    "AI Engineer",
-    "Data Science",
-    "Autonomous Systems",
-    "UAS",
-    "IoT",
-    "Computer Vision",
-    "Drone Engineering",
-    "Agriculture Automation",
-    "Embedded Systems",
-    "Robotics",
+    'Mohit Gorhe',
+    'Mohit Rajendra Gorhe',
+    'AI Engineer',
+    'Computer Vision',
+    'Edge AI',
+    'UAS Integration',
+    'Eulerian Bots',
+    'Raspberry Pi',
+    'Robotics',
   ],
-  authors: [{ name: "Mohit Gorhe" }],
-  creator: "Mohit Gorhe",
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    title: "Mohit Gorhe — AI & Data Science Engineer",
-    description:
-      "Building intelligent, autonomous and connected systems across AI/ML, UAS, IoT, and agriculture automation.",
-    siteName: "Mohit Gorhe",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Mohit Gorhe — AI & Data Science Engineer",
-    description:
-      "Building intelligent, autonomous and connected systems across AI/ML, UAS, IoT, and agriculture automation.",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
+  authors: [{ name: 'Mohit Rajendra Gorhe' }],
+  creator: 'Mohit Rajendra Gorhe',
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <html
-      lang="en"
-      className={`${inter.variable} ${jetbrainsMono.variable} h-full`}
-    >
-      <body className="min-h-full flex flex-col antialiased">{children}</body>
+    <html lang="en" className="h-full">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body className="min-h-full flex flex-col bg-white text-zinc-900 antialiased selection:bg-black selection:text-white">
+        {children}
+      </body>
     </html>
   );
 }

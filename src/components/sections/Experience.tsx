@@ -1,143 +1,94 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { experiences, education } from '@/data/experience';
-import { Briefcase, GraduationCap, MapPin, CheckCircle2, Calendar } from 'lucide-react';
 
 export default function Experience() {
   return (
-    <section id="experience" className="relative py-24 sm:py-32 bg-zinc-50/50 border-b border-zinc-200" aria-label="Professional experience">
+    <section id="experience" className="py-24 sm:py-36 bg-zinc-50/60" aria-label="Experience">
       <div className="section-container">
-        <div className="section-label">Career & Track Record</div>
-        <h2 className="text-3xl sm:text-5xl font-mono font-bold text-black tracking-tight mb-4">
-          Professional Experience
-        </h2>
-        <p className="max-w-3xl text-zinc-600 text-base sm:text-lg mb-16 leading-relaxed">
-          Hands-on engineering roles across UAS integration, Edge AI development, flight testing,
-          and direct field deployments with defense and agricultural stakeholders.
-        </p>
-
-        {/* Experience Timeline */}
-        <div className="relative mb-24">
-          {/* Vertical timeline line */}
-          <div className="absolute left-4 sm:left-6 top-0 bottom-0 w-0.5 bg-zinc-300" aria-hidden="true" />
-
-          <div className="space-y-12">
-            {experiences.map((exp, index) => {
-              const isCurrent = exp.status === 'current';
-
-              return (
-                <motion.div
-                  key={exp.id}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: '-50px' }}
-                  transition={{ delay: index * 0.1, duration: 0.4 }}
-                  className="relative pl-12 sm:pl-16"
-                >
-                  {/* Timeline node */}
-                  <div
-                    className={`absolute left-2.5 sm:left-4.5 top-1.5 w-3.5 h-3.5 rounded-full border-2 border-black bg-white ${
-                      isCurrent ? 'ring-4 ring-black/10' : ''
-                    }`}
-                    aria-hidden="true"
-                  >
-                    {isCurrent && <div className="w-1.5 h-1.5 rounded-full bg-black m-auto mt-0.5 animate-pulse" />}
-                  </div>
-
-                  {/* Card Content */}
-                  <div className="card p-6 sm:p-8 bg-white border border-zinc-200 hover:border-black transition-all">
-                    <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3 mb-4 pb-4 border-b border-zinc-100">
-                      <div>
-                        <div className="flex flex-wrap items-center gap-2 mb-1">
-                          <h3 className="font-mono text-xl sm:text-2xl font-bold text-black">
-                            {exp.company}
-                          </h3>
-                          {exp.location && (
-                            <span className="inline-flex items-center gap-1 font-mono text-xs text-zinc-500 bg-zinc-100 px-2 py-0.5 rounded">
-                              <MapPin size={12} />
-                              {exp.location}
-                            </span>
-                          )}
-                        </div>
-                        <p className="font-mono text-base font-semibold text-black">{exp.role}</p>
-                      </div>
-
-                      <div className="flex items-center gap-2">
-                        <span className="inline-flex items-center gap-1.5 font-mono text-xs px-3 py-1 rounded-full border border-black bg-black text-white font-semibold">
-                          <Calendar size={12} />
-                          {exp.period}
-                        </span>
-                      </div>
-                    </div>
-
-                    <p className="text-zinc-700 text-sm sm:text-base leading-relaxed mb-6 font-sans">
-                      {exp.summary}
-                    </p>
-
-                    {/* Bullet Points from CV */}
-                    <div className="mb-6 space-y-2">
-                      <div className="font-mono text-xs uppercase tracking-wider text-black font-semibold mb-2">
-                        Key Responsibilities & Deliverables
-                      </div>
-                      <ul className="space-y-2">
-                        {exp.bullets.map((bullet, i) => (
-                          <li key={i} className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-700 leading-relaxed font-sans">
-                            <CheckCircle2 size={16} className="text-black flex-shrink-0 mt-0.5" />
-                            <span>{bullet}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    {/* Focus Area Tags */}
-                    <div className="pt-4 border-t border-zinc-100 flex flex-wrap gap-2">
-                      {exp.focusAreas.map((area) => (
-                        <span
-                          key={area}
-                          className="px-2.5 py-1 font-mono text-xs text-zinc-800 border border-zinc-200 rounded bg-zinc-50 font-medium"
-                        >
-                          {area}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
+        {/* Header */}
+        <div className="max-w-2xl mb-16 sm:mb-20">
+          <h2 className="text-3xl sm:text-5xl font-light text-zinc-950 tracking-tight">
+            Experience
+          </h2>
+          <p className="mt-4 text-base sm:text-lg text-zinc-600 leading-relaxed font-light">
+            Field testing agricultural and defense drone platforms, integrating companion computers,
+            and writing computer vision workflows.
+          </p>
         </div>
 
-        {/* Education Highlight (from CV) */}
-        <div className="pt-8">
-          <div className="font-mono text-xs text-black uppercase tracking-widest mb-6 flex items-center gap-3 font-bold">
-            <span className="w-5 h-0.5 bg-black" />
-            Formal Education
-          </div>
-
-          <div className="card p-6 sm:p-8 bg-white border border-zinc-200 hover:border-black transition-all flex flex-col md:flex-row md:items-center justify-between gap-6">
-            <div className="flex items-start gap-4">
-              <div className="p-3 rounded-lg border border-black bg-zinc-50 text-black flex-shrink-0">
-                <GraduationCap size={28} />
+        {/* Roles List */}
+        <div className="space-y-16">
+          {experiences.map((exp) => (
+            <div
+              key={exp.id}
+              className="border-t border-zinc-200 pt-8 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12"
+            >
+              {/* Left Column: Organization, role, period, location */}
+              <div className="lg:col-span-4 space-y-2">
+                <div className="flex items-baseline justify-between lg:block">
+                  <h3 className="text-xl font-medium text-zinc-950">{exp.company}</h3>
+                  <span className="text-xs font-mono text-zinc-500 block lg:mt-1">{exp.period}</span>
+                </div>
+                <p className="text-sm font-semibold text-zinc-800">{exp.role}</p>
+                {exp.location && (
+                  <p className="text-xs font-mono text-zinc-400">{exp.location}</p>
+                )}
+                <div className="flex flex-wrap gap-1.5 pt-3">
+                  {exp.focusAreas.map((area) => (
+                    <span
+                      key={area}
+                      className="px-2 py-0.5 text-xs font-mono text-zinc-600 bg-white border border-zinc-200"
+                    >
+                      {area}
+                    </span>
+                  ))}
+                </div>
               </div>
-              <div>
-                <h3 className="font-mono text-lg sm:text-xl font-bold text-black">
-                  {education.degree} — {education.field}
-                </h3>
-                <p className="text-sm font-semibold text-zinc-700 mt-1">
-                  {education.institution}
+
+              {/* Right Column: Narrative summary and deliverables */}
+              <div className="lg:col-span-8 space-y-4">
+                <p className="text-sm sm:text-base text-zinc-700 leading-relaxed">
+                  {exp.summary}
                 </p>
-                <p className="font-mono text-xs text-zinc-500 mt-0.5 flex items-center gap-2">
-                  <MapPin size={12} />
-                  {education.location} • {education.period}
-                </p>
+
+                <div className="pt-2">
+                  <span className="text-xs font-mono uppercase text-zinc-400 block mb-3">
+                    Verified deliverables
+                  </span>
+                  <ul className="space-y-2.5">
+                    {exp.bullets.map((bullet, i) => (
+                      <li key={i} className="text-sm text-zinc-600 leading-relaxed flex items-start gap-2.5">
+                        <span className="text-zinc-900 mt-1 font-bold text-xs">—</span>
+                        <span>{bullet}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </div>
+          ))}
+        </div>
 
-            <div className="flex-shrink-0 border-t md:border-t-0 md:border-l border-zinc-200 pt-4 md:pt-0 md:pl-6 flex flex-col items-start md:items-end">
-              <span className="font-mono text-xs text-zinc-500 uppercase">ACADEMIC SCORE</span>
-              <span className="font-mono text-2xl font-bold text-black">{education.score}</span>
-              <span className="font-mono text-xs text-zinc-600">Graduating Class of 2026</span>
+        {/* Education Section */}
+        <div className="mt-20 border-t border-zinc-200 pt-16">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-baseline">
+            <div className="lg:col-span-4">
+              <h3 className="text-xl font-medium text-zinc-950">Education</h3>
+              <span className="text-xs font-mono text-zinc-500 block mt-1">{education.period}</span>
+            </div>
+
+            <div className="lg:col-span-8 space-y-2">
+              <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
+                <h4 className="text-lg font-medium text-zinc-900">
+                  {education.degree} in {education.field}
+                </h4>
+                <span className="text-sm font-mono font-semibold text-zinc-900">
+                  CGPA: {education.score}
+                </span>
+              </div>
+              <p className="text-sm text-zinc-600">{education.institution}</p>
+              <p className="text-xs font-mono text-zinc-400">{education.location}</p>
             </div>
           </div>
         </div>
