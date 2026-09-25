@@ -24,7 +24,7 @@ export default function Footer() {
               href="https://github.com/mohitgorhe"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-mono text-xs text-text-muted hover:text-accent-cyan transition-colors"
+              className="font-mono text-xs text-text-muted hover:text-white transition-colors"
               aria-label="GitHub Profile"
             >
               GitHub
@@ -33,14 +33,14 @@ export default function Footer() {
               href="https://linkedin.com/in/mohitgorhe"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-mono text-xs text-text-muted hover:text-accent-cyan transition-colors"
+              className="font-mono text-xs text-text-muted hover:text-white transition-colors"
               aria-label="LinkedIn Profile"
             >
               LinkedIn
             </a>
             <a
-              href="mailto:contact@mohitgorhe.com"
-              className="font-mono text-xs text-text-muted hover:text-accent-cyan transition-colors"
+              href="mailto:mohitgorhe122@gmail.com"
+              className="font-mono text-xs text-text-muted hover:text-white transition-colors"
               aria-label="Email"
             >
               Email
@@ -54,7 +54,7 @@ export default function Footer() {
             © {new Date().getFullYear()} Mohit Gorhe. Engineered, not templated.
           </span>
           <span className="font-mono text-xs text-text-muted flex items-center gap-2">
-            <span className="inline-block w-1.5 h-1.5 rounded-full bg-accent-green" />
+            <span className="inline-block w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
             SYS.STATUS: ONLINE
           </span>
         </div>

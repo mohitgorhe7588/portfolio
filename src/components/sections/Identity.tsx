@@ -65,39 +65,35 @@ export default function Identity() {
                 }
                 className={`group relative p-5 rounded-xl border text-left transition-all duration-300 cursor-pointer ${
                   isActive
-                    ? 'border-accent-cyan bg-accent-cyan-dim'
+                    ? 'border-white bg-white/10 shadow-[0_0_20px_rgba(255,255,255,0.08)]'
                     : isConnected
-                    ? 'border-accent-cyan/30 bg-bg-surface'
+                    ? 'border-zinc-400 bg-bg-surface'
                     : isDimmed
-                    ? 'border-border-subtle bg-bg-surface/50 opacity-40'
-                    : 'border-border-primary bg-bg-surface hover:border-accent-cyan-dim'
+                    ? 'border-border-subtle bg-bg-surface/30 opacity-30'
+                    : 'border-border-primary bg-bg-surface hover:border-zinc-500'
                 }`}
                 aria-pressed={isActive}
                 aria-label={`${domain.label}: ${domain.description}`}
               >
                 {/* Connection indicator */}
                 {isConnected && (
-                  <div className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-accent-cyan animate-pulse" />
+                  <div className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-white shadow-[0_0_6px_#fff] animate-pulse" />
                 )}
 
                 <Icon
                   size={24}
                   className={`mb-3 transition-colors duration-300 ${
                     isActive
-                      ? 'text-accent-cyan'
+                      ? 'text-white'
                       : isConnected
-                      ? 'text-accent-cyan/70'
-                      : 'text-text-muted group-hover:text-accent-cyan'
+                      ? 'text-zinc-300'
+                      : 'text-zinc-500 group-hover:text-white'
                   }`}
                 />
-                <h3
-                  className={`font-mono text-sm font-semibold mb-1 transition-colors ${
-                    isActive || isConnected ? 'text-text-primary' : 'text-text-primary'
-                  }`}
-                >
+                <h3 className="font-mono text-sm font-semibold mb-1 text-white">
                   {domain.label}
                 </h3>
-                <p className="text-xs text-text-muted leading-relaxed">
+                <p className="text-xs text-zinc-400 leading-relaxed">
                   {domain.description}
                 </p>
               </motion.button>
@@ -106,7 +102,7 @@ export default function Identity() {
         </div>
 
         {/* Connection hint */}
-        <p className="mt-6 text-center font-mono text-xs text-text-muted">
+        <p className="mt-6 text-center font-mono text-xs text-zinc-500">
           Click a domain to see connections
         </p>
 
@@ -118,7 +114,7 @@ export default function Identity() {
           transition={{ delay: 0.3 }}
           className="mt-16 p-6 rounded-xl border border-border-primary bg-bg-surface/50"
         >
-          <div className="font-mono text-xs text-text-muted mb-3">CAREER.TRAJECTORY</div>
+          <div className="font-mono text-xs text-zinc-400 mb-3 tracking-wider">CAREER.TRAJECTORY</div>
           <div className="flex flex-wrap items-center gap-2 font-mono text-sm text-text-secondary">
             {[
               'Hardware',
@@ -132,8 +128,8 @@ export default function Identity() {
               'Intelligent Physical Systems',
             ].map((stage, i, arr) => (
               <span key={stage} className="flex items-center gap-2">
-                <span className="text-text-primary">{stage}</span>
-                {i < arr.length - 1 && <span className="text-accent-cyan">→</span>}
+                <span className="text-white font-medium">{stage}</span>
+                {i < arr.length - 1 && <span className="text-zinc-400">→</span>}
               </span>
             ))}
           </div>

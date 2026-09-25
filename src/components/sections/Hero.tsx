@@ -18,12 +18,12 @@ export default function Hero() {
     >
       {/* Background layers */}
       <div className="absolute inset-0 bg-bg-primary" />
-      <div className="absolute inset-0 dot-grid opacity-40" />
+      <div className="absolute inset-0 dot-grid opacity-30" />
       <div
         className="absolute inset-0"
         style={{
           background:
-            'radial-gradient(ellipse 80% 50% at 50% 0%, rgba(0, 212, 255, 0.06) 0%, transparent 60%)',
+            'radial-gradient(ellipse 80% 50% at 50% 0%, rgba(255, 255, 255, 0.05) 0%, transparent 60%)',
         }}
       />
 
@@ -62,10 +62,10 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mb-8"
         >
-          <span className="inline-flex items-center gap-3 font-mono text-xs tracking-widest text-accent-cyan uppercase">
-            <span className="w-8 h-px bg-accent-cyan opacity-50" />
+          <span className="inline-flex items-center gap-3 font-mono text-xs tracking-widest text-white uppercase">
+            <span className="w-8 h-px bg-white/40" />
             AI & Data Science Engineer
-            <span className="w-8 h-px bg-accent-cyan opacity-50" />
+            <span className="w-8 h-px bg-white/40" />
           </span>
         </motion.div>
 
@@ -74,11 +74,11 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.4 }}
-          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-mono font-bold tracking-tight text-text-primary leading-none"
+          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-mono font-bold tracking-tight text-white leading-none"
         >
           MOHIT
           <br />
-          <span className="bg-gradient-to-r from-accent-cyan to-blue-400 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-b from-white via-zinc-300 to-zinc-600 bg-clip-text text-transparent">
             GORHE
           </span>
         </motion.h1>
@@ -107,7 +107,7 @@ export default function Hero() {
             (domain) => (
               <span
                 key={domain}
-                className="px-3 py-1.5 font-mono text-xs text-text-secondary border border-border-primary rounded-md bg-bg-surface/50 hover:border-accent-cyan-dim hover:text-accent-cyan transition-all duration-200"
+                className="px-3 py-1.5 font-mono text-xs text-zinc-300 border border-border-primary rounded-md bg-bg-surface/50 hover:border-white/50 hover:text-white transition-all duration-200"
               >
                 {domain}
               </span>
@@ -124,13 +124,13 @@ export default function Hero() {
         >
           <a
             href="#projects"
-            className="inline-flex items-center gap-2 px-6 py-3 font-mono text-sm text-bg-primary bg-accent-cyan rounded-lg hover:bg-accent-cyan/90 transition-colors font-medium"
+            className="inline-flex items-center gap-2 px-6 py-3 font-mono text-sm text-black bg-white rounded-lg hover:bg-zinc-200 transition-colors font-medium cursor-pointer shadow-[0_0_20px_rgba(255,255,255,0.15)]"
           >
             View Projects
           </a>
           <a
             href="#contact"
-            className="inline-flex items-center gap-2 px-6 py-3 font-mono text-sm text-text-secondary border border-border-primary rounded-lg hover:border-accent-cyan-dim hover:text-text-primary transition-all"
+            className="inline-flex items-center gap-2 px-6 py-3 font-mono text-sm text-zinc-300 border border-border-primary rounded-lg hover:border-white hover:text-white transition-all cursor-pointer"
           >
             Contact
           </a>

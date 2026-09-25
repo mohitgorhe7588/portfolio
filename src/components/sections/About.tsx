@@ -78,7 +78,7 @@ export default function About() {
                 </div>
                 <div className="flex justify-between pb-2 border-b border-border-subtle">
                   <span className="text-text-muted">CURRENT ROLE</span>
-                  <span className="text-accent-cyan font-medium">UAS Integration Engineer @ Eulerian Bits</span>
+                  <span className="text-white font-medium">UAS Integration Engineer @ Eulerian Bots</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-text-muted">SYSTEM PHILOSOPHY</span>
@@ -88,15 +88,15 @@ export default function About() {
             </div>
 
             <div className="grid grid-cols-2 gap-4">
-              <div className="p-4 rounded-xl border border-border-primary bg-bg-surface/50">
-                <Cpu size={18} className="text-accent-cyan mb-2" />
+              <div className="p-4 rounded-xl border border-border-primary bg-bg-surface/50 hover:border-white/40 transition-colors">
+                <Cpu size={18} className="text-white mb-2" />
                 <div className="font-mono text-sm font-semibold text-text-primary">End-to-End</div>
                 <div className="font-mono text-xs text-text-muted mt-1">
                   Firmware, drivers, algorithms, and models
                 </div>
               </div>
-              <div className="p-4 rounded-xl border border-border-primary bg-bg-surface/50">
-                <Shield size={18} className="text-accent-amber mb-2" />
+              <div className="p-4 rounded-xl border border-border-primary bg-bg-surface/50 hover:border-white/40 transition-colors">
+                <Shield size={18} className="text-white mb-2" />
                 <div className="font-mono text-sm font-semibold text-text-primary">Rigorous Testing</div>
                 <div className="font-mono text-xs text-text-muted mt-1">
                   Validated against physical world edge cases

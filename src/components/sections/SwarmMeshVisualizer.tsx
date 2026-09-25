@@ -35,7 +35,7 @@ export default function SwarmMeshVisualizer() {
     <div className="mt-6 rounded-xl border border-border-primary bg-bg-primary/80 p-5 sm:p-6 overflow-hidden">
       <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-border-subtle mb-4">
         <div className="flex items-center gap-2">
-          <Activity size={16} className="text-accent-cyan" />
+          <Activity size={16} className="text-white" />
           <span className="font-mono text-xs font-semibold text-text-primary uppercase tracking-wider">
             Interactive Mesh Topology (BATMAN-adv L2)
           </span>
@@ -44,7 +44,7 @@ export default function SwarmMeshVisualizer() {
         <button
           onClick={triggerPacket}
           disabled={transmitting}
-          className="font-mono text-xs px-3 py-1 rounded bg-accent-cyan/10 hover:bg-accent-cyan/20 border border-accent-cyan/30 text-accent-cyan transition-colors"
+          className="font-mono text-xs px-3 py-1 rounded bg-white text-black font-semibold hover:bg-zinc-200 transition-colors cursor-pointer"
         >
           {transmitting ? 'BROADCASTING PACKET...' : 'SIMULATE P2P PACKET'}
         </button>
@@ -55,11 +55,11 @@ export default function SwarmMeshVisualizer() {
         <div className="md:col-span-7 relative h-64 sm:h-72 w-full rounded-lg border border-border-subtle bg-bg-secondary/60 flex items-center justify-center p-2">
           <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
             {/* Mesh Links */}
-            <line x1="50" y1="20" x2="20" y2="75" stroke="#1e293b" strokeWidth="0.8" strokeDasharray="2,2" />
-            <line x1="50" y1="20" x2="50" y2="80" stroke="#1e293b" strokeWidth="0.8" strokeDasharray="2,2" />
-            <line x1="50" y1="20" x2="80" y2="75" stroke="#1e293b" strokeWidth="0.8" strokeDasharray="2,2" />
-            <line x1="20" y1="75" x2="50" y2="80" stroke="#1e293b" strokeWidth="0.8" strokeDasharray="2,2" />
-            <line x1="50" y1="80" x2="80" y2="75" stroke="#1e293b" strokeWidth="0.8" strokeDasharray="2,2" />
+            <line x1="50" y1="20" x2="20" y2="75" stroke="#27272a" strokeWidth="0.8" strokeDasharray="2,2" />
+            <line x1="50" y1="20" x2="50" y2="80" stroke="#27272a" strokeWidth="0.8" strokeDasharray="2,2" />
+            <line x1="50" y1="20" x2="80" y2="75" stroke="#27272a" strokeWidth="0.8" strokeDasharray="2,2" />
+            <line x1="20" y1="75" x2="50" y2="80" stroke="#27272a" strokeWidth="0.8" strokeDasharray="2,2" />
+            <line x1="50" y1="80" x2="80" y2="75" stroke="#27272a" strokeWidth="0.8" strokeDasharray="2,2" />
 
             {/* Active transmitting waves */}
             {transmitting && (
@@ -69,7 +69,7 @@ export default function SwarmMeshVisualizer() {
                   y1="20"
                   x2="20"
                   y2="75"
-                  stroke="#00d4ff"
+                  stroke="#ffffff"
                   strokeWidth="1.5"
                   initial={{ pathLength: 0 }}
                   animate={{ pathLength: 1 }}
@@ -80,7 +80,7 @@ export default function SwarmMeshVisualizer() {
                   y1="20"
                   x2="50"
                   y2="80"
-                  stroke="#00d4ff"
+                  stroke="#ffffff"
                   strokeWidth="1.5"
                   initial={{ pathLength: 0 }}
                   animate={{ pathLength: 1 }}
@@ -91,7 +91,7 @@ export default function SwarmMeshVisualizer() {
                   y1="20"
                   x2="80"
                   y2="75"
-                  stroke="#00d4ff"
+                  stroke="#ffffff"
                   strokeWidth="1.5"
                   initial={{ pathLength: 0 }}
                   animate={{ pathLength: 1 }}
@@ -101,8 +101,8 @@ export default function SwarmMeshVisualizer() {
             )}
 
             {/* Mesh Center Router Badge */}
-            <rect x="36" y="44" width="28" height="12" rx="2" fill="#111827" stroke="#00d4ff30" strokeWidth="0.5" />
-            <text x="50" y="52" fill="#94a3b8" fontSize="3" fontFamily="monospace" textAnchor="middle">
+            <rect x="36" y="44" width="28" height="12" rx="2" fill="#09090b" stroke="#3f3f46" strokeWidth="0.5" />
+            <text x="50" y="52" fill="#a1a1aa" fontSize="3" fontFamily="monospace" textAnchor="middle">
               BATMAN-adv
             </text>
           </svg>
@@ -115,14 +115,14 @@ export default function SwarmMeshVisualizer() {
                 key={node.id}
                 onClick={() => setSelectedNode(node)}
                 style={{ left: `${node.x}%`, top: `${node.y}%` }}
-                className={`absolute -translate-x-1/2 -translate-y-1/2 p-2 sm:p-2.5 rounded-lg border font-mono text-[10px] sm:text-xs flex items-center gap-1.5 transition-all ${
+                className={`absolute -translate-x-1/2 -translate-y-1/2 p-2 sm:p-2.5 rounded-lg border font-mono text-[10px] sm:text-xs flex items-center gap-1.5 transition-all cursor-pointer ${
                   isSelected
-                    ? 'border-accent-cyan bg-bg-surface text-accent-cyan shadow-[0_0_15px_rgba(0,212,255,0.3)] z-10'
-                    : 'border-border-primary bg-bg-primary text-text-secondary hover:border-text-muted z-0'
+                    ? 'border-white bg-bg-surface text-white shadow-[0_0_15px_rgba(255,255,255,0.2)] z-10'
+                    : 'border-border-primary bg-bg-primary text-zinc-400 hover:border-zinc-300 z-0'
                 }`}
                 title={`Click to inspect ${node.name}`}
               >
-                <Wifi size={12} className={isSelected ? 'text-accent-cyan' : 'text-text-muted'} />
+                <Wifi size={12} className={isSelected ? 'text-white' : 'text-zinc-500'} />
                 <span>{node.name.split(' ')[1]}</span>
               </button>
             );
@@ -133,7 +133,7 @@ export default function SwarmMeshVisualizer() {
         <div className="md:col-span-5 p-4 rounded-lg border border-border-subtle bg-bg-secondary/40 font-mono text-xs space-y-3">
           <div className="flex items-center justify-between text-text-muted pb-2 border-b border-border-subtle">
             <span>PEER TELEMETRY</span>
-            <span className="text-accent-cyan">{selectedNode.name}</span>
+            <span className="text-white font-bold">{selectedNode.name}</span>
           </div>
 
           <div className="space-y-2">
@@ -147,11 +147,11 @@ export default function SwarmMeshVisualizer() {
             </div>
             <div className="flex justify-between">
               <span className="text-text-muted">SIGNAL STRENGTH:</span>
-              <span className="text-accent-green">{selectedNode.signal}</span>
+              <span className="text-white">{selectedNode.signal}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-text-muted">NODE STATUS:</span>
-              <span className="text-text-primary uppercase">{selectedNode.status}</span>
+              <span className="text-white uppercase">{selectedNode.status}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-text-muted">PROTOCOL:</span>

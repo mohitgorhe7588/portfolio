@@ -14,8 +14,8 @@ export interface Experience {
 
 export const experiences: Experience[] = [
   {
-    id: 'eulerian-bits',
-    company: 'Eulerian Bits',
+    id: 'eulerian-bots',
+    company: 'Eulerian Bots',
     role: 'UAS Integration Engineer',
     period: 'Current',
     status: 'current',

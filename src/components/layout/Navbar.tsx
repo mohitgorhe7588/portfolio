@@ -47,9 +47,9 @@ export default function Navbar() {
         {/* Logo / Name */}
         <a
           href="#hero"
-          className="font-mono text-sm font-semibold tracking-wider text-text-primary hover:text-accent-cyan transition-colors"
+          className="font-mono text-sm font-semibold tracking-wider text-white hover:text-zinc-300 transition-colors"
         >
-          MG<span className="text-accent-cyan">.</span>
+          MG<span className="text-white">.</span>
         </a>
 
         {/* Desktop Links */}
@@ -58,7 +58,7 @@ export default function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className="font-mono text-xs tracking-wide text-text-secondary hover:text-accent-cyan transition-colors duration-200 uppercase"
+              className="font-mono text-xs tracking-wide text-zinc-400 hover:text-white transition-colors duration-200 uppercase"
             >
               {link.label}
             </a>
@@ -67,13 +67,13 @@ export default function Navbar() {
 
         {/* Status Indicator */}
         <div className="hidden md:flex items-center gap-2">
-          <div className="status-dot bg-accent-green" />
-          <span className="font-mono text-xs text-text-muted">Available</span>
+          <div className="status-dot" />
+          <span className="font-mono text-xs text-zinc-400">Available</span>
         </div>
 
         {/* Mobile Menu Toggle */}
         <button
-          className="md:hidden p-2 text-text-secondary hover:text-text-primary transition-colors"
+          className="md:hidden p-2 text-zinc-400 hover:text-white transition-colors cursor-pointer"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={isMobileMenuOpen}
@@ -90,22 +90,22 @@ export default function Navbar() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden bg-bg-primary/95 backdrop-blur-md border-b border-border-primary overflow-hidden"
+            className="md:hidden bg-bg-primary/98 backdrop-blur-md border-b border-border-primary overflow-hidden"
           >
             <div className="section-container py-4 flex flex-col gap-4">
               {navLinks.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
-                  className="font-mono text-sm text-text-secondary hover:text-accent-cyan transition-colors py-2"
+                  className="font-mono text-sm text-zinc-400 hover:text-white transition-colors py-2"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.label}
                 </a>
               ))}
               <div className="flex items-center gap-2 pt-2 border-t border-border-primary">
-                <div className="status-dot bg-accent-green" />
-                <span className="font-mono text-xs text-text-muted">Available</span>
+                <div className="status-dot" />
+                <span className="font-mono text-xs text-zinc-400">Available</span>
               </div>
             </div>
           </motion.div>

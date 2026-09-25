@@ -22,13 +22,6 @@ export default function Experience() {
 
           <div className="space-y-12">
             {experiences.map((exp, index) => {
-              const dotColor =
-                exp.accentColor === 'amber'
-                  ? 'bg-accent-amber border-accent-amber-dim'
-                  : exp.accentColor === 'green'
-                  ? 'bg-accent-green border-accent-green-dim'
-                  : 'bg-accent-cyan border-accent-cyan-dim';
-
               const isActive = exp.status === 'current' || exp.status === 'ongoing';
 
               return (
@@ -42,8 +35,8 @@ export default function Experience() {
                 >
                   {/* Timeline dot */}
                   <div
-                    className={`absolute left-2.5 sm:left-4.5 top-1 w-3 h-3 rounded-full border-2 ${dotColor} ${
-                      isActive ? 'animate-pulse' : ''
+                    className={`absolute left-2.5 sm:left-4.5 top-1 w-3 h-3 rounded-full border-2 border-white/60 bg-white ${
+                      isActive ? 'animate-pulse shadow-[0_0_8px_#fff]' : 'bg-zinc-700'
                     }`}
                     aria-hidden="true"
                   />
@@ -52,19 +45,19 @@ export default function Experience() {
                   <div className="card p-6">
                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
                       <div>
-                        <h3 className="font-mono text-lg font-bold text-text-primary">
+                        <h3 className="font-mono text-lg font-bold text-white">
                           {exp.company}
                         </h3>
-                        <p className="font-mono text-sm text-accent-cyan">{exp.role}</p>
+                        <p className="font-mono text-sm text-zinc-300">{exp.role}</p>
                       </div>
                       <span
                         className={`inline-flex items-center gap-2 font-mono text-xs px-3 py-1 rounded-full border ${
                           isActive
-                            ? 'border-accent-green-dim text-accent-green'
-                            : 'border-border-primary text-text-muted'
+                            ? 'border-white/30 text-white bg-white/5'
+                            : 'border-border-primary text-zinc-500'
                         }`}
                       >
-                        {isActive && <span className="status-dot bg-accent-green" />}
+                        {isActive && <span className="status-dot" />}
                         {exp.period}
                       </span>
                     </div>
@@ -75,7 +68,7 @@ export default function Experience() {
                       {exp.focusAreas.map((area) => (
                         <span
                           key={area}
-                          className="px-2 py-0.5 font-mono text-xs text-text-muted border border-border-subtle rounded"
+                          className="px-2 py-0.5 font-mono text-xs text-zinc-300 border border-border-primary rounded bg-bg-primary/50"
                         >
                           {area}
                         </span>

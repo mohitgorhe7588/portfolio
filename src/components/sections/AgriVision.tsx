@@ -115,8 +115,8 @@ export default function AgriVision() {
               farmers.
             </p>
           </div>
-          <div className="inline-flex items-center gap-2 self-start px-3.5 py-1.5 rounded-full border border-accent-amber/30 bg-accent-amber/10 text-accent-amber font-mono text-xs">
-            <span className="w-2 h-2 rounded-full bg-accent-amber animate-pulse" />
+          <div className="inline-flex items-center gap-2 self-start px-3.5 py-1.5 rounded-full border border-border-primary bg-bg-surface text-white font-mono text-xs">
+            <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
             Evolving Platform Vision
           </div>
         </div>
@@ -127,7 +127,7 @@ export default function AgriVision() {
           <div className="lg:col-span-5 flex flex-col gap-3">
             <div className="flex items-center justify-between font-mono text-xs text-text-muted px-1 mb-2">
               <span className="flex items-center gap-2">
-                <Layers size={14} className="text-accent-cyan" />
+                <Layers size={14} className="text-white" />
                 SYSTEM ARCHITECTURE STACK
               </span>
               <span>INSPECT LEVEL</span>
@@ -141,10 +141,10 @@ export default function AgriVision() {
                 <button
                   key={layer.id}
                   onClick={() => setSelectedLayerId(layer.id)}
-                  className={`w-full text-left p-4 rounded-xl border transition-all duration-300 relative ${
+                  className={`w-full text-left p-4 rounded-xl border transition-all duration-300 relative cursor-pointer ${
                     isSelected
-                      ? 'bg-bg-surface border-accent-cyan shadow-[0_0_24px_rgba(0,212,255,0.08)]'
-                      : 'bg-bg-surface/50 border-border-primary hover:border-border-primary/80 hover:bg-bg-surface'
+                      ? 'bg-bg-surface border-white shadow-[0_0_24px_rgba(255,255,255,0.08)]'
+                      : 'bg-bg-surface/50 border-border-primary hover:border-zinc-500 hover:bg-bg-surface'
                   }`}
                   aria-pressed={isSelected}
                 >
@@ -153,8 +153,8 @@ export default function AgriVision() {
                       <div
                         className={`p-2 rounded-lg border ${
                           isSelected
-                            ? 'bg-accent-cyan/10 border-accent-cyan/40 text-accent-cyan'
-                            : 'bg-bg-primary border-border-primary text-text-muted'
+                            ? 'bg-white/10 border-white/40 text-white'
+                            : 'bg-bg-primary border-border-primary text-zinc-500'
                         }`}
                       >
                         <Icon size={18} />
@@ -171,7 +171,7 @@ export default function AgriVision() {
                       size={16}
                       className={`transition-transform duration-300 ${
                         isSelected
-                          ? 'text-accent-cyan translate-x-1'
+                          ? 'text-white translate-x-1'
                           : 'text-text-muted opacity-40'
                       }`}
                     />
@@ -194,7 +194,7 @@ export default function AgriVision() {
               >
                 <div className="flex flex-wrap items-center justify-between gap-3 pb-6 border-b border-border-subtle mb-6">
                   <div>
-                    <span className="font-mono text-xs text-accent-cyan uppercase tracking-widest">
+                    <span className="font-mono text-xs text-zinc-400 uppercase tracking-widest">
                       {activeLayer.tag}
                     </span>
                     <h3 className="text-xl sm:text-2xl font-mono font-bold text-text-primary mt-1">
@@ -203,7 +203,7 @@ export default function AgriVision() {
                   </div>
 
                   <div className="font-mono text-xs px-3 py-1 rounded border border-border-primary text-text-muted bg-bg-primary/60">
-                    Status: <span className="text-text-secondary">{activeLayer.status}</span>
+                    Status: <span className="text-white">{activeLayer.status}</span>
                   </div>
                 </div>
 
@@ -221,7 +221,7 @@ export default function AgriVision() {
                         key={mod}
                         className="flex items-start gap-2.5 p-3 rounded-lg border border-border-subtle bg-bg-primary/40 text-xs sm:text-sm text-text-secondary font-mono"
                       >
-                        <CheckCircle2 size={15} className="text-accent-cyan flex-shrink-0 mt-0.5" />
+                        <CheckCircle2 size={15} className="text-white flex-shrink-0 mt-0.5" />
                         <span>{mod}</span>
                       </div>
                     ))}
@@ -230,7 +230,7 @@ export default function AgriVision() {
 
                 <div className="mt-8 pt-6 border-t border-border-subtle flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs font-mono text-text-muted">
                   <span>Architecture Note: Modular decoupling between telemetry & actuation</span>
-                  <span className="text-accent-amber">Designed for real farm conditions</span>
+                  <span className="text-zinc-300">Designed for real farm conditions</span>
                 </div>
               </motion.div>
             </AnimatePresence>
@@ -238,10 +238,10 @@ export default function AgriVision() {
         </div>
 
         {/* Philosophical Statement Banner */}
-        <div className="mt-16 p-6 sm:p-8 rounded-2xl border border-accent-cyan/20 bg-gradient-to-r from-accent-cyan/5 via-bg-surface to-accent-amber/5 relative overflow-hidden">
+        <div className="mt-16 p-6 sm:p-8 rounded-2xl border border-border-primary bg-bg-surface/80 relative overflow-hidden">
           <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div className="max-w-2xl">
-              <span className="font-mono text-xs text-accent-cyan uppercase tracking-wider">
+              <span className="font-mono text-xs text-zinc-400 uppercase tracking-wider">
                 Engineering Principle
               </span>
               <p className="mt-2 text-base sm:text-lg font-medium text-text-primary leading-snug">
@@ -250,8 +250,8 @@ export default function AgriVision() {
                 superficial complexity.&rdquo;
               </p>
             </div>
-            <div className="flex-shrink-0 font-mono text-xs text-text-muted border-l-2 border-accent-amber/40 pl-4 py-1">
-              <div>FIELD-FIRST ENGINEERING</div>
+            <div className="flex-shrink-0 font-mono text-xs text-text-muted border-l-2 border-white/40 pl-4 py-1">
+              <div className="text-white font-medium">FIELD-FIRST ENGINEERING</div>
               <div className="text-text-secondary mt-1">Sensing → Intelligence → Action</div>
             </div>
           </div>

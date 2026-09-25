@@ -26,7 +26,7 @@ function LinkedinIcon({ className = 'w-4 h-4' }: { className?: string }) {
 
 export default function Contact() {
   const [copied, setCopied] = useState(false);
-  const email = 'mohitgorhe@gmail.com';
+  const email = 'mohitgorhe122@gmail.com';
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(email);
@@ -51,27 +51,27 @@ export default function Contact() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Main Direct Channel Card (7 cols) */}
           <div className="lg:col-span-7 card p-6 sm:p-8 border-border-primary bg-bg-surface">
-            <div className="font-mono text-xs text-accent-cyan uppercase tracking-wider mb-6 flex items-center justify-between">
+            <div className="font-mono text-xs text-zinc-300 uppercase tracking-wider mb-6 flex items-center justify-between">
               <span>PRIMARY DIRECT DISPATCH</span>
-              <span className="flex items-center gap-1.5 text-accent-green">
-                <span className="w-2 h-2 rounded-full bg-accent-green animate-pulse" />
+              <span className="flex items-center gap-1.5 text-white">
+                <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
                 ACCEPTING INQUIRIES
               </span>
             </div>
 
-            <div className="p-4 sm:p-6 rounded-xl border border-border-subtle bg-bg-primary/70 mb-6">
+            <div className="p-4 sm:p-6 rounded-xl border border-border-subtle bg-bg-primary/90 mb-6">
               <div className="font-mono text-xs text-text-muted mb-1">EMAIL ADDRESS</div>
               <div className="flex items-center justify-between gap-4">
-                <span className="font-mono text-base sm:text-xl font-bold text-text-primary break-all">
+                <span className="font-mono text-base sm:text-xl font-bold text-white break-all">
                   {email}
                 </span>
                 <button
                   onClick={copyToClipboard}
-                  className="flex-shrink-0 p-2.5 rounded-lg border border-border-primary hover:border-accent-cyan hover:text-accent-cyan transition-colors text-text-secondary bg-bg-surface cursor-pointer"
+                  className="flex-shrink-0 p-2.5 rounded-lg border border-border-primary hover:border-white hover:text-white transition-colors text-text-secondary bg-bg-surface cursor-pointer"
                   title="Copy email to clipboard"
                   aria-label="Copy email address"
                 >
-                  {copied ? <Check size={18} className="text-accent-green" /> : <Copy size={18} />}
+                  {copied ? <Check size={18} className="text-white" /> : <Copy size={18} />}
                 </button>
               </div>
             </div>
@@ -79,7 +79,7 @@ export default function Contact() {
             <div className="flex flex-wrap gap-4">
               <a
                 href={`mailto:${email}`}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-accent-cyan text-bg-primary font-mono text-sm font-semibold hover:bg-accent-cyan/90 transition-all shadow-[0_0_20px_rgba(0,212,255,0.2)]"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-white text-black font-mono text-sm font-semibold hover:bg-zinc-200 transition-all shadow-[0_0_20px_rgba(255,255,255,0.15)]"
               >
                 <Mail size={16} />
                 Send Email
@@ -89,7 +89,7 @@ export default function Contact() {
                 href="https://linkedin.com/in/mohitgorhe"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-border-primary hover:border-accent-cyan hover:text-text-primary text-text-secondary font-mono text-sm transition-all"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-border-primary hover:border-white hover:text-white text-text-secondary font-mono text-sm transition-all"
               >
                 <LinkedinIcon className="w-4 h-4" />
                 LinkedIn
@@ -100,7 +100,7 @@ export default function Contact() {
                 href="https://github.com/mohitgorhe"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-border-primary hover:border-accent-cyan hover:text-text-primary text-text-secondary font-mono text-sm transition-all"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-border-primary hover:border-white hover:text-white text-text-secondary font-mono text-sm transition-all"
               >
                 <GithubIcon className="w-4 h-4" />
                 GitHub
@@ -114,25 +114,25 @@ export default function Contact() {
             <div className="p-6 rounded-xl border border-border-primary bg-bg-surface/50 font-mono text-xs space-y-4">
               <div className="text-text-muted flex items-center justify-between">
                 <span>COMMUNICATION STATUS</span>
-                <span className="text-accent-cyan">STABLE</span>
+                <span className="text-white">ONLINE</span>
               </div>
               <div className="h-px bg-border-subtle" />
               <div className="space-y-2 text-text-secondary">
                 <div className="flex justify-between">
                   <span className="text-text-muted">LOCATION:</span>
-                  <span>India [IST / UTC+5:30]</span>
+                  <span className="text-white">India [IST / UTC+5:30]</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-text-muted">PROFESSIONAL ROLE:</span>
-                  <span>UAS Integration Engineer</span>
+                  <span className="text-white">UAS Integration Engineer @ Eulerian Bots</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-text-muted">FREELANCE AVAILABILITY:</span>
-                  <span className="text-accent-green">Open for IoT / Embedded / AI Systems</span>
+                  <span className="text-text-muted">FREELANCE STATUS:</span>
+                  <span className="text-white">Available for IoT / Embedded / AI Systems</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-text-muted">ENCRYPTION:</span>
-                  <span>Standard TLS</span>
+                  <span className="text-zinc-400">Standard TLS</span>
                 </div>
               </div>
             </div>

@@ -10,14 +10,6 @@ import SwarmMeshVisualizer from './SwarmMeshVisualizer';
 function FeaturedProjectCard({ project, index }: { project: Project; index: number }) {
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const accentClass =
-    project.accentColor === 'amber'
-      ? 'text-accent-amber border-accent-amber-dim'
-      : 'text-accent-cyan border-accent-cyan-dim';
-
-  const dotClass =
-    project.accentColor === 'amber' ? 'bg-accent-amber' : 'bg-accent-cyan';
-
   return (
     <motion.article
       initial={{ opacity: 0, y: 30 }}
@@ -30,12 +22,12 @@ function FeaturedProjectCard({ project, index }: { project: Project; index: numb
       <div className="flex items-start justify-between gap-4 mb-4">
         <div className="flex-1">
           <div className="flex items-center gap-3 mb-2">
-            <span className={`inline-block w-2 h-2 rounded-full ${dotClass}`} />
-            <span className="font-mono text-xs text-text-muted uppercase tracking-wide">
+            <span className="inline-block w-2 h-2 rounded-full bg-white animate-pulse" />
+            <span className="font-mono text-xs text-zinc-400 uppercase tracking-wide">
               {project.statusLabel}
             </span>
           </div>
-          <h3 className="text-xl sm:text-2xl font-mono font-bold text-text-primary">
+          <h3 className="text-xl sm:text-2xl font-mono font-bold text-white">
             {project.title}
           </h3>
           <p className="font-mono text-sm text-text-secondary mt-1">{project.subtitle}</p>
@@ -50,7 +42,7 @@ function FeaturedProjectCard({ project, index }: { project: Project; index: numb
         {project.technologies.map((tech) => (
           <span
             key={tech}
-            className="px-2.5 py-1 font-mono text-xs text-text-muted border border-border-subtle rounded bg-bg-primary/50"
+            className="px-2.5 py-1 font-mono text-xs text-zinc-300 border border-border-primary rounded bg-bg-primary/80"
           >
             {tech}
           </span>
@@ -62,7 +54,7 @@ function FeaturedProjectCard({ project, index }: { project: Project; index: numb
         {project.domains.map((domain) => (
           <span
             key={domain}
-            className={`px-2.5 py-1 font-mono text-xs rounded border ${accentClass} bg-transparent`}
+            className="px-2.5 py-1 font-mono text-xs rounded border border-white/20 bg-white/5 text-zinc-200"
           >
             {domain}
           </span>
@@ -74,7 +66,7 @@ function FeaturedProjectCard({ project, index }: { project: Project; index: numb
         <>
           <button
             onClick={() => setIsExpanded(!isExpanded)}
-            className="flex items-center gap-2 font-mono text-sm text-accent-cyan hover:text-accent-cyan/80 transition-colors mb-4 cursor-pointer"
+            className="flex items-center gap-2 font-mono text-sm text-white hover:text-zinc-300 transition-colors mb-4 cursor-pointer"
             aria-expanded={isExpanded}
           >
             {isExpanded ? 'Collapse Case Study' : 'View Full Technical Case Study'}
@@ -132,7 +124,7 @@ function FeaturedProjectCard({ project, index }: { project: Project; index: numb
 function CaseStudyBlock({ label, content }: { label: string; content: string }) {
   return (
     <div>
-      <div className="font-mono text-xs text-accent-cyan uppercase tracking-wide mb-2">
+      <div className="font-mono text-xs text-white uppercase tracking-wider mb-2 font-semibold">
         {label}
       </div>
       <p className="text-text-secondary text-sm leading-relaxed">{content}</p>
@@ -142,26 +134,19 @@ function CaseStudyBlock({ label, content }: { label: string; content: string }) 
 
 // ─── Compact Project Card ────────────────────────────────────
 function ProjectCard({ project, index }: { project: Project; index: number }) {
-  const dotClass =
-    project.accentColor === 'amber'
-      ? 'bg-accent-amber'
-      : project.accentColor === 'green'
-      ? 'bg-accent-green'
-      : 'bg-accent-cyan';
-
   return (
     <motion.article
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.1, duration: 0.4 }}
-      className="card p-5 hover:bg-bg-surface-hover transition-colors"
+      className="card p-5 hover:bg-bg-surface-hover hover:border-white/40 transition-colors"
     >
       <div className="flex items-center gap-2 mb-3">
-        <span className={`w-1.5 h-1.5 rounded-full ${dotClass}`} />
-        <span className="font-mono text-xs text-text-muted">{project.statusLabel}</span>
+        <span className="w-1.5 h-1.5 rounded-full bg-white" />
+        <span className="font-mono text-xs text-zinc-400">{project.statusLabel}</span>
       </div>
-      <h3 className="font-mono text-base font-semibold text-text-primary mb-1">
+      <h3 className="font-mono text-base font-semibold text-white mb-1">
         {project.title}
       </h3>
       <p className="text-sm text-text-secondary mb-3">{project.subtitle}</p>
@@ -169,13 +154,13 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         {project.technologies.slice(0, 4).map((tech) => (
           <span
             key={tech}
-            className="px-2 py-0.5 font-mono text-xs text-text-muted border border-border-subtle rounded"
+            className="px-2 py-0.5 font-mono text-xs text-zinc-400 border border-border-primary rounded"
           >
             {tech}
           </span>
         ))}
         {project.technologies.length > 4 && (
-          <span className="px-2 py-0.5 font-mono text-xs text-text-muted">
+          <span className="px-2 py-0.5 font-mono text-xs text-zinc-500">
             +{project.technologies.length - 4}
           </span>
         )}
@@ -192,16 +177,16 @@ function ExperimentCard({ project, index }: { project: Project; index: number })
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.08, duration: 0.3 }}
-      className="flex items-center gap-4 p-4 rounded-lg border border-border-subtle hover:border-border-primary transition-colors"
+      className="flex items-center gap-4 p-4 rounded-lg border border-border-subtle hover:border-white/30 transition-colors"
     >
-      <span className="w-1.5 h-1.5 rounded-full bg-text-muted flex-shrink-0" />
+      <span className="w-1.5 h-1.5 rounded-full bg-zinc-400 flex-shrink-0" />
       <div className="flex-1 min-w-0">
-        <h3 className="font-mono text-sm font-medium text-text-primary truncate">
+        <h3 className="font-mono text-sm font-medium text-white truncate">
           {project.title}
         </h3>
-        <p className="text-xs text-text-muted truncate">{project.subtitle}</p>
+        <p className="text-xs text-zinc-400 truncate">{project.subtitle}</p>
       </div>
-      <span className="font-mono text-xs text-text-muted flex-shrink-0">
+      <span className="font-mono text-xs text-zinc-500 flex-shrink-0">
         {project.statusLabel}
       </span>
     </motion.article>
@@ -215,7 +200,7 @@ export default function Projects() {
       <div className="section-container">
         {/* Section Header */}
         <div className="section-label">Selected Work</div>
-        <h2 className="text-3xl sm:text-4xl font-mono font-bold text-text-primary mb-4">
+        <h2 className="text-3xl sm:text-4xl font-mono font-bold text-white mb-4">
           Projects & Research
         </h2>
         <p className="max-w-2xl text-text-secondary mb-16">
@@ -225,8 +210,8 @@ export default function Projects() {
 
         {/* Featured Projects */}
         <div className="space-y-6 mb-16">
-          <div className="font-mono text-xs text-text-muted uppercase tracking-widest mb-6 flex items-center gap-3">
-            <span className="w-4 h-px bg-accent-cyan" />
+          <div className="font-mono text-xs text-zinc-400 uppercase tracking-widest mb-6 flex items-center gap-3">
+            <span className="w-4 h-px bg-white" />
             Featured Projects
           </div>
           <div className="space-y-6">
@@ -238,8 +223,8 @@ export default function Projects() {
 
         {/* Other Projects */}
         <div className="mb-16">
-          <div className="font-mono text-xs text-text-muted uppercase tracking-widest mb-6 flex items-center gap-3">
-            <span className="w-4 h-px bg-accent-amber" />
+          <div className="font-mono text-xs text-zinc-400 uppercase tracking-widest mb-6 flex items-center gap-3">
+            <span className="w-4 h-px bg-white/60" />
             Other Projects
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -251,8 +236,8 @@ export default function Projects() {
 
         {/* Experiments */}
         <div>
-          <div className="font-mono text-xs text-text-muted uppercase tracking-widest mb-6 flex items-center gap-3">
-            <span className="w-4 h-px bg-text-muted" />
+          <div className="font-mono text-xs text-zinc-400 uppercase tracking-widest mb-6 flex items-center gap-3">
+            <span className="w-4 h-px bg-white/30" />
             Experiments / Builds
           </div>
           <div className="space-y-2 max-w-2xl">

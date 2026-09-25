@@ -71,7 +71,7 @@ export default function Exploring() {
             </p>
           </div>
           <div className="inline-flex items-center gap-2 font-mono text-xs text-text-muted">
-            <Sparkles size={14} className="text-accent-cyan" />
+            <Sparkles size={14} className="text-white" />
             <span>ACTIVE FOCUS AREAS</span>
           </div>
         </div>
@@ -86,17 +86,17 @@ export default function Exploring() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1, duration: 0.4 }}
-                className="card p-6 sm:p-8 flex flex-col justify-between"
+                className="card p-6 sm:p-8 flex flex-col justify-between hover:border-white/40 transition-colors"
               >
                 <div>
                   <div className="flex items-center justify-between gap-3 mb-4">
-                    <span className="font-mono text-xs text-accent-cyan uppercase tracking-wider">
+                    <span className="font-mono text-xs text-zinc-400 uppercase tracking-wider">
                       {item.category}
                     </span>
-                    <Icon size={18} className="text-text-muted" />
+                    <Icon size={18} className="text-white" />
                   </div>
 
-                  <h3 className="font-mono text-lg sm:text-xl font-bold text-text-primary mb-3 leading-snug">
+                  <h3 className="font-mono text-lg sm:text-xl font-bold text-white mb-3 leading-snug">
                     {item.title}
                   </h3>
 
@@ -104,8 +104,8 @@ export default function Exploring() {
                     {item.description}
                   </p>
 
-                  <div className="p-3 rounded-lg bg-bg-primary/50 border border-border-subtle font-mono text-xs text-text-muted mb-6">
-                    <span className="text-accent-amber mr-2">Bench Note:</span>
+                  <div className="p-3 rounded-lg bg-bg-primary/50 border border-border-subtle font-mono text-xs text-zinc-400 mb-6">
+                    <span className="text-white font-semibold mr-2">Bench Note:</span>
                     {item.notes}
                   </div>
                 </div>
@@ -114,7 +114,7 @@ export default function Exploring() {
                   {item.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-2.5 py-1 rounded font-mono text-xs text-text-muted bg-bg-surface border border-border-subtle"
+                      className="px-2.5 py-1 rounded font-mono text-xs text-zinc-300 bg-bg-surface border border-border-primary"
                     >
                       {tag}
                     </span>
