@@ -29,9 +29,8 @@ const layers = [
 
 export default function AgriVision() {
   return (
-    <section id="agri-vision" className="py-24 sm:py-36 bg-white" aria-label="Agricultural automation">
+    <section id="agri-vision" className="py-24 sm:py-36" aria-label="Agricultural automation">
       <div className="section-container">
-        {/* Asymmetric layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
           <div className="lg:col-span-4 lg:sticky lg:top-28 space-y-4">
             <h2 className="text-3xl sm:text-5xl font-light text-zinc-950 tracking-tight">
@@ -40,14 +39,14 @@ export default function AgriVision() {
             <p className="text-base text-zinc-600 leading-relaxed font-light">
               An engineering architecture designed to connect physical field sensing, computer vision, and automated valve control directly to farmers.
             </p>
-            <div className="border-t border-zinc-200 pt-4 text-xs font-mono text-zinc-500">
+            <div className="pt-4 text-xs font-mono text-zinc-500">
               Field-first rule: Hardware durability in dusty, high-heat farmland takes priority over complex abstraction.
             </div>
           </div>
 
-          <div className="lg:col-span-8 divide-y divide-zinc-200 border-t border-zinc-200">
+          <div className="lg:col-span-8 lg:max-h-[70vh] scroll-panel space-y-10">
             {layers.map((layer) => (
-              <div key={layer.number} className="py-8 space-y-3">
+              <div key={layer.number} className="space-y-3">
                 <div className="flex items-baseline gap-4">
                   <span className="font-mono text-xs text-zinc-400">{layer.number}</span>
                   <h3 className="text-xl font-medium text-zinc-900">{layer.title}</h3>
@@ -59,7 +58,7 @@ export default function AgriVision() {
                   {layer.items.map((item) => (
                     <span
                       key={item}
-                      className="px-2 py-0.5 text-xs font-mono text-zinc-700 bg-zinc-50 border border-zinc-200"
+                      className="px-2 py-0.5 text-xs font-mono text-zinc-700 bg-white"
                     >
                       {item}
                     </span>

@@ -2,24 +2,18 @@
 
 /* ─── Strict Dual-Color (White & Black) Design Tokens ───── */
 :root {
-  /* Strict Dual Color: Pure White & Deep Black */
-  --bg-primary: #ffffff;
+  --bg-primary: #fafafa;
   --bg-secondary: #fafafa;
-  --bg-surface: #ffffff;
+  --bg-surface: #fafafa;
   --bg-subtle: #f4f4f5;
 
-  /* Single Muted Accent: Graphite / Zinc */
   --accent-muted: #71717a;
   --accent-subtle: #a1a1aa;
-  --border-hairline: #e4e4e7;
-  --border-strong: #09090b;
 
-  /* Typography */
   --text-primary: #09090b;
   --text-secondary: #52525b;
   --text-muted: #71717a;
 
-  /* Fonts */
   --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   --font-serif: 'Instrument Serif', Georgia, serif;
   --font-mono: 'JetBrains Mono', monospace;
@@ -34,8 +28,6 @@
   --color-text-primary: var(--text-primary);
   --color-text-secondary: var(--text-secondary);
   --color-text-muted: var(--text-muted);
-  --color-border-hairline: var(--border-hairline);
-  --color-border-strong: var(--border-strong);
   --font-sans: var(--font-sans);
   --font-serif: var(--font-serif);
   --font-mono: var(--font-mono);
@@ -48,12 +40,8 @@ html {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  *,
-  *::before,
-  *::after {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
@@ -92,12 +80,7 @@ body {
   }
 }
 
-/* ─── Editorial Typography Utilities ─────────────────────── */
-.font-display {
-  font-family: var(--font-serif);
-}
-
-/* ─── Sharp Rectilinear Geometry — No Bubble Radius, No Shadows ─── */
+/* ─── Sharp Rectilinear Geometry ────────────────────────────── */
 * {
   border-radius: 0;
   box-shadow: none !important;
@@ -109,14 +92,14 @@ body {
   color: #ffffff;
 }
 
-/* ─── Custom Scrollbar ────────────────────────────────────── */
+/* ─── Custom Scrollbar (main page) ──────────────────────────── */
 ::-webkit-scrollbar {
   width: 4px;
   height: 4px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #ffffff;
+  background: var(--bg-primary);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -124,6 +107,31 @@ body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
+  background: #71717a;
+}
+
+/* ─── Independent scrollable panels ─────────────────────────── */
+.scroll-panel {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #a1a1aa #f4f4f5;
+  padding-right: 0.75rem;
+}
+
+.scroll-panel::-webkit-scrollbar {
+  width: 4px;
+}
+
+.scroll-panel::-webkit-scrollbar-track {
+  background: #f4f4f5;
+}
+
+.scroll-panel::-webkit-scrollbar-thumb {
+  background: #a1a1aa;
+}
+
+.scroll-panel::-webkit-scrollbar-thumb:hover {
   background: #71717a;
 }
 

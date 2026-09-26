@@ -4,9 +4,9 @@ import { techCategories } from '@/data/tech-stack';
 
 export default function TechStack() {
   return (
-    <section id="skills" className="py-24 sm:py-36 bg-white" aria-label="Technical skills">
+    <section id="skills" className="py-24 sm:py-36" aria-label="Technical skills">
       <div className="section-container">
-        {/* Asymmetric layout: 4 cols intro / 8 cols skills */}
+        {/* Asymmetric: sticky left + scrollable right */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
           <div className="lg:col-span-4 lg:sticky lg:top-28">
             <h2 className="text-3xl sm:text-5xl font-light text-zinc-950 tracking-tight">
@@ -17,9 +17,9 @@ export default function TechStack() {
             </p>
           </div>
 
-          <div className="lg:col-span-8 divide-y divide-zinc-200">
+          <div className="lg:col-span-8 lg:max-h-[70vh] scroll-panel space-y-10">
             {techCategories.map((category) => (
-              <div key={category.id} className="py-8 first:pt-0 last:pb-0 space-y-3">
+              <div key={category.id} className="space-y-3">
                 <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
                   <h3 className="text-lg font-medium text-zinc-950">{category.label}</h3>
                   {category.description && (
@@ -33,7 +33,7 @@ export default function TechStack() {
                   {category.skills.map((skill) => (
                     <span
                       key={skill}
-                      className="px-2.5 py-1 text-xs font-mono text-zinc-800 bg-zinc-50 border border-zinc-200"
+                      className="px-2.5 py-1 text-xs font-mono text-zinc-800 bg-white"
                     >
                       {skill}
                     </span>

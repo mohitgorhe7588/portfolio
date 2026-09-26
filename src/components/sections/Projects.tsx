@@ -8,10 +8,9 @@ function FeaturedProjectItem({ project, index }: { project: Project; index: numb
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <article className="border-t border-zinc-200 pt-10 sm:pt-14 pb-12 sm:pb-16">
-      {/* Asymmetric layout: 5 cols left (Index, title, meta) / 7 cols right (Narrative, bullets, case study) */}
+    <article className="pt-10 sm:pt-14 pb-12 sm:pb-16">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-        {/* Left Column (5 cols) */}
+        {/* Left Column */}
         <div className="lg:col-span-5 space-y-4">
           <div className="flex items-center gap-3">
             <span className="font-mono text-xs text-zinc-400 font-medium">
@@ -34,7 +33,7 @@ function FeaturedProjectItem({ project, index }: { project: Project; index: numb
             {project.technologies.map((tech) => (
               <span
                 key={tech}
-                className="px-2 py-0.5 text-xs font-mono text-zinc-700 bg-zinc-100 border border-zinc-200"
+                className="px-2 py-0.5 text-xs font-mono text-zinc-700 bg-zinc-100"
               >
                 {tech}
               </span>
@@ -42,15 +41,14 @@ function FeaturedProjectItem({ project, index }: { project: Project; index: numb
           </div>
         </div>
 
-        {/* Right Column (7 cols) */}
+        {/* Right Column */}
         <div className="lg:col-span-7 space-y-6">
           <p className="text-base text-zinc-700 leading-relaxed">
             {project.description}
           </p>
 
-          {/* Key Deliverables from CV */}
           {project.keyPoints && (
-            <div className="space-y-2 border-l border-zinc-900 pl-4 py-1">
+            <div className="space-y-2 pl-4 py-1">
               <span className="text-xs font-mono uppercase tracking-wider text-zinc-900 font-semibold block mb-2">
                 Engineering deliverables
               </span>
@@ -65,7 +63,6 @@ function FeaturedProjectItem({ project, index }: { project: Project; index: numb
             </div>
           )}
 
-          {/* Case Study Details Toggle */}
           {project.problem && (
             <div>
               <button
@@ -84,7 +81,7 @@ function FeaturedProjectItem({ project, index }: { project: Project; index: numb
                     transition={{ duration: 0.25 }}
                     className="overflow-hidden"
                   >
-                    <div className="pt-6 mt-4 border-t border-zinc-200 space-y-5 text-sm">
+                    <div className="pt-6 mt-4 space-y-5 text-sm">
                       {project.problem && (
                         <div>
                           <span className="text-xs font-mono uppercase text-zinc-400 block mb-1">
@@ -134,9 +131,8 @@ function FeaturedProjectItem({ project, index }: { project: Project; index: numb
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-24 sm:py-36 bg-white" aria-label="Projects">
+    <section id="projects" className="py-24 sm:py-36" aria-label="Projects">
       <div className="section-container">
-        {/* Plain, conversational header — no redundant labels */}
         <div className="max-w-2xl mb-16 sm:mb-20">
           <h2 className="text-3xl sm:text-5xl font-light text-zinc-950 tracking-tight">
             Projects
@@ -148,14 +144,14 @@ export default function Projects() {
         </div>
 
         {/* Featured Case Studies */}
-        <div>
+        <div className="space-y-6">
           {featuredProjects.map((project, i) => (
             <FeaturedProjectItem key={project.id} project={project} index={i} />
           ))}
         </div>
 
-        {/* Asymmetrical Secondary Projects Section */}
-        <div className="mt-20 border-t border-zinc-200 pt-16">
+        {/* Secondary Projects */}
+        <div className="mt-20 pt-16">
           <div className="max-w-xl mb-12">
             <h3 className="text-xl sm:text-2xl font-normal text-zinc-950 tracking-tight">
               Hardware, IoT &amp; Flight Systems
@@ -165,10 +161,9 @@ export default function Projects() {
             </p>
           </div>
 
-          {/* Asymmetric 2-column list layout */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
             {otherProjects.map((project) => (
-              <div key={project.id} className="border-t border-zinc-200 pt-5 space-y-2">
+              <div key={project.id} className="pt-5 space-y-2">
                 <div className="flex items-center justify-between text-xs font-mono text-zinc-400">
                   <span>{project.statusLabel}</span>
                   <span className="text-zinc-500">{project.technologies.slice(0, 3).join(' • ')}</span>
@@ -183,12 +178,12 @@ export default function Projects() {
           </div>
         </div>
 
-        {/* Additional bench builds */}
-        <div className="mt-20 border-t border-zinc-200 pt-12">
+        {/* Additional research builds */}
+        <div className="mt-20 pt-12">
           <h3 className="text-sm font-mono uppercase tracking-wider text-zinc-400 mb-6">
             Additional research builds
           </h3>
-          <div className="divide-y divide-zinc-100">
+          <div className="space-y-1">
             {experiments.map((item) => (
               <div
                 key={item.id}

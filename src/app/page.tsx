@@ -12,7 +12,7 @@ import Contact from '@/components/sections/Contact';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-white text-zinc-900 selection:bg-black selection:text-white">
+    <div className="min-h-screen bg-[#fafafa] text-zinc-900 selection:bg-black selection:text-white">
       <Navbar />
       <main id="main-content" className="flex flex-col">
         <Hero />

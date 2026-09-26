@@ -4,9 +4,8 @@ import { experiences, education } from '@/data/experience';
 
 export default function Experience() {
   return (
-    <section id="experience" className="py-24 sm:py-36 bg-zinc-50/60" aria-label="Experience">
+    <section id="experience" className="py-24 sm:py-36" aria-label="Experience">
       <div className="section-container">
-        {/* Header */}
         <div className="max-w-2xl mb-16 sm:mb-20">
           <h2 className="text-3xl sm:text-5xl font-light text-zinc-950 tracking-tight">
             Experience
@@ -17,14 +16,14 @@ export default function Experience() {
           </p>
         </div>
 
-        {/* Roles List */}
-        <div className="space-y-16">
+        {/* Roles — spacing only, no border lines */}
+        <div className="space-y-20">
           {experiences.map((exp) => (
             <div
               key={exp.id}
-              className="border-t border-zinc-200 pt-8 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12"
+              className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12"
             >
-              {/* Left Column: Organization, role, period, location */}
+              {/* Left: Organization, role, period */}
               <div className="lg:col-span-4 space-y-2">
                 <div className="flex items-baseline justify-between lg:block">
                   <h3 className="text-xl font-medium text-zinc-950">{exp.company}</h3>
@@ -38,7 +37,7 @@ export default function Experience() {
                   {exp.focusAreas.map((area) => (
                     <span
                       key={area}
-                      className="px-2 py-0.5 text-xs font-mono text-zinc-600 bg-white border border-zinc-200"
+                      className="px-2 py-0.5 text-xs font-mono text-zinc-600 bg-white"
                     >
                       {area}
                     </span>
@@ -46,7 +45,7 @@ export default function Experience() {
                 </div>
               </div>
 
-              {/* Right Column: Narrative summary and deliverables */}
+              {/* Right: Summary and deliverables */}
               <div className="lg:col-span-8 space-y-4">
                 <p className="text-sm sm:text-base text-zinc-700 leading-relaxed">
                   {exp.summary}
@@ -70,8 +69,8 @@ export default function Experience() {
           ))}
         </div>
 
-        {/* Education Section */}
-        <div className="mt-20 border-t border-zinc-200 pt-16">
+        {/* Education — spacing instead of border */}
+        <div className="mt-24 pt-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-baseline">
             <div className="lg:col-span-4">
               <h3 className="text-xl font-medium text-zinc-950">Education</h3>

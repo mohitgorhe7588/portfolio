@@ -24,11 +24,11 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 sm:py-36 bg-zinc-50/60" aria-label="Contact">
+    <section id="contact" className="py-24 sm:py-36" aria-label="Contact">
       <div className="section-container">
-        {/* Asymmetric layout: 5 cols text / 7 cols direct links & actions */}
+        {/* Asymmetric: 5 cols text / 7 cols links */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          {/* Left Column (5 cols) */}
+          {/* Left */}
           <div className="lg:col-span-5 space-y-4">
             <h2 className="text-3xl sm:text-5xl font-light text-zinc-950 tracking-tight">
               Get in touch
@@ -42,10 +42,10 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Right Column (7 cols) */}
-          <div className="lg:col-span-7 space-y-8">
-            {/* Email contact row */}
-            <div className="border-t border-zinc-200 pt-6">
+          {/* Right */}
+          <div className="lg:col-span-7 space-y-10">
+            {/* Email */}
+            <div>
               <span className="text-xs font-mono uppercase text-zinc-400 block mb-2">
                 Email
               </span>
@@ -58,15 +58,15 @@ export default function Contact() {
                 </a>
                 <button
                   onClick={copyEmail}
-                  className="self-start text-xs font-mono text-zinc-600 hover:text-black border border-zinc-300 px-3 py-1 cursor-pointer"
+                  className="self-start text-xs font-mono text-zinc-600 hover:text-black px-3 py-1 cursor-pointer bg-zinc-100 hover:bg-zinc-200 transition-colors"
                 >
                   {copiedEmail ? 'Copied' : 'Copy email'}
                 </button>
               </div>
             </div>
 
-            {/* Phone contact row */}
-            <div className="border-t border-zinc-200 pt-6">
+            {/* Phone */}
+            <div>
               <span className="text-xs font-mono uppercase text-zinc-400 block mb-2">
                 Phone &amp; WhatsApp
               </span>
@@ -79,7 +79,7 @@ export default function Contact() {
                 </a>
                 <button
                   onClick={copyPhone}
-                  className="self-start text-xs font-mono text-zinc-600 hover:text-black border border-zinc-300 px-3 py-1 cursor-pointer"
+                  className="self-start text-xs font-mono text-zinc-600 hover:text-black px-3 py-1 cursor-pointer bg-zinc-100 hover:bg-zinc-200 transition-colors"
                 >
                   {copiedPhone ? 'Copied' : 'Copy phone'}
                 </button>
@@ -87,7 +87,7 @@ export default function Contact() {
             </div>
 
             {/* Profiles */}
-            <div className="border-t border-zinc-200 pt-6">
+            <div>
               <span className="text-xs font-mono uppercase text-zinc-400 block mb-3">
                 Profiles
               </span>
@@ -104,7 +104,7 @@ export default function Contact() {
                   href={githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2.5 border border-zinc-300 bg-white text-zinc-900 text-xs font-mono font-medium hover:border-black transition-colors"
+                  className="inline-flex items-center gap-2 px-4 py-2.5 bg-zinc-100 text-zinc-900 text-xs font-mono font-medium hover:bg-zinc-200 transition-colors"
                 >
                   GitHub profile ↗
                 </a>

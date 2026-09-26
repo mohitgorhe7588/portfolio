@@ -4,7 +4,7 @@ export default function Footer() {
   const githubUrl = 'https://github.com/mohitgorhe7588';
 
   return (
-    <footer className="border-t border-zinc-200 bg-white py-12 text-sm text-zinc-600">
+    <footer className="py-12 text-sm text-zinc-600">
       <div className="section-container">
         <div className="flex flex-col md:flex-row items-start md:items-baseline justify-between gap-6">
           <div className="space-y-1">
@@ -46,7 +46,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 pt-6 border-t border-zinc-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs font-mono text-zinc-400">
+        <div className="mt-8 pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs font-mono text-zinc-400">
           <span>© {currentYear} Mohit Rajendra Gorhe</span>
           <span>Nashik, Maharashtra, India</span>
         </div>

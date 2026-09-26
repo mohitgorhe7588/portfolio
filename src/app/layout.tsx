@@ -42,7 +42,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="min-h-full flex flex-col bg-white text-zinc-900 antialiased selection:bg-black selection:text-white">
+      <body className="min-h-full flex flex-col bg-[#fafafa] text-zinc-900 antialiased selection:bg-black selection:text-white">
         {children}
       </body>
     </html>

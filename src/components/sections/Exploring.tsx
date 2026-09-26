@@ -37,9 +37,8 @@ const explorations = [
 
 export default function Exploring() {
   return (
-    <section id="notes" className="py-24 sm:py-36 bg-zinc-50/60" aria-label="Workbench notes">
+    <section id="notes" className="py-24 sm:py-36" aria-label="Workbench notes">
       <div className="section-container">
-        {/* Header */}
         <div className="max-w-2xl mb-16 sm:mb-20">
           <h2 className="text-3xl sm:text-5xl font-light text-zinc-950 tracking-tight">
             Workbench notes
@@ -49,10 +48,10 @@ export default function Exploring() {
           </p>
         </div>
 
-        {/* Asymmetric 2-column grid with generous whitespace */}
+        {/* Asymmetric 2-column grid — spacing instead of lines */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-14">
           {explorations.map((item) => (
-            <div key={item.title} className="border-t border-zinc-200 pt-6 space-y-3">
+            <div key={item.title} className="space-y-3">
               <span className="text-xs font-mono uppercase text-zinc-400 block">
                 {item.category}
               </span>
@@ -62,7 +61,7 @@ export default function Exploring() {
               <p className="text-sm text-zinc-600 leading-relaxed">
                 {item.description}
               </p>
-              <div className="text-xs text-zinc-700 bg-white border border-zinc-200 p-3 font-mono leading-relaxed">
+              <div className="text-xs text-zinc-700 bg-white p-3 font-mono leading-relaxed">
                 <span className="text-zinc-900 font-semibold block mb-0.5">Bench note:</span>
                 {item.notes}
               </div>

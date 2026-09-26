@@ -26,15 +26,19 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 bg-white transition-all duration-150 ${
-        isScrolled ? 'border-b border-zinc-200 py-3.5' : 'py-5'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-150 ${
+        isScrolled
+          ? 'bg-[#fafafa]/90 backdrop-blur-sm py-3.5'
+          : 'bg-transparent py-5'
       }`}
     >
       <div className="section-container flex items-center justify-between">
         {/* Brand */}
         <a
           href="#top"
-          className="text-sm font-semibold tracking-tight text-black hover:opacity-70 transition-opacity"
+          className={`text-sm font-semibold tracking-tight transition-opacity hover:opacity-70 ${
+            isScrolled ? 'text-black' : 'text-white'
+          }`}
         >
           Mohit Gorhe
         </a>
@@ -45,7 +49,11 @@ export default function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm text-zinc-600 hover:text-black transition-colors"
+              className={`text-sm transition-colors ${
+                isScrolled
+                  ? 'text-zinc-600 hover:text-black'
+                  : 'text-zinc-300 hover:text-white'
+              }`}
             >
               {link.label}
             </a>
@@ -53,15 +61,17 @@ export default function Navbar() {
         </nav>
 
         {/* Current affiliation */}
-        <div className="hidden md:flex items-center gap-2 text-xs font-mono text-zinc-500">
-          <span className="w-1.5 h-1.5 bg-black inline-block" />
+        <div className={`hidden md:flex items-center gap-2 text-xs font-mono ${
+          isScrolled ? 'text-zinc-500' : 'text-zinc-400'
+        }`}>
+          <span className={`w-1.5 h-1.5 inline-block ${isScrolled ? 'bg-black' : 'bg-white'}`} />
           <span>Eulerian Bots — UAS Integration</span>
         </div>
 
         {/* Mobile menu button */}
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="md:hidden p-2 text-black cursor-pointer"
+          className={`md:hidden p-2 cursor-pointer ${isScrolled ? 'text-black' : 'text-white'}`}
           aria-label={isMobileMenuOpen ? 'Close navigation' : 'Open navigation'}
         >
           {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
@@ -70,7 +80,7 @@ export default function Navbar() {
 
       {/* Mobile Drawer */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-white border-b border-zinc-200 px-6 py-6 space-y-4">
+        <div className="md:hidden bg-[#fafafa] px-6 py-6 space-y-4">
           {navLinks.map((link) => (
             <a
               key={link.href}
@@ -81,7 +91,7 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
-          <div className="pt-4 border-t border-zinc-100 text-xs font-mono text-zinc-500">
+          <div className="pt-4 text-xs font-mono text-zinc-500">
             Eulerian Bots • UAS Integration Engineer
           </div>
         </div>
