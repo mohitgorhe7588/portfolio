@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
 const navLinks = [
@@ -26,10 +27,10 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-150 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? 'bg-[#fafafa]/90 backdrop-blur-sm py-3.5'
-          : 'bg-transparent py-5'
+          ? 'navbar-glass-light py-3.5'
+          : 'navbar-glass-dark py-5'
       }`}
     >
       <div className="section-container flex items-center justify-between">
@@ -60,14 +61,6 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* Current affiliation */}
-        <div className={`hidden md:flex items-center gap-2 text-xs font-mono ${
-          isScrolled ? 'text-zinc-500' : 'text-zinc-400'
-        }`}>
-          <span className={`w-1.5 h-1.5 inline-block ${isScrolled ? 'bg-black' : 'bg-white'}`} />
-          <span>Eulerian Bots — UAS Integration</span>
-        </div>
-
         {/* Mobile menu button */}
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -78,24 +71,36 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Drawer */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden bg-[#fafafa] px-6 py-6 space-y-4">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="block text-base text-zinc-900 font-medium py-1"
-            >
-              {link.label}
-            </a>
-          ))}
-          <div className="pt-4 text-xs font-mono text-zinc-500">
-            Eulerian Bots • UAS Integration Engineer
-          </div>
-        </div>
-      )}
+      {/* Mobile Drawer — animated */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            key="mobile-menu"
+            initial={{ opacity: 0, y: -12, height: 0 }}
+            animate={{ opacity: 1, y: 0, height: 'auto' }}
+            exit={{ opacity: 0, y: -8, height: 0 }}
+            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+            className="md:hidden overflow-hidden"
+            style={{ background: 'rgba(10,10,15,0.92)', backdropFilter: 'blur(24px)' }}
+          >
+            <div className="px-6 py-6 space-y-1">
+              {navLinks.map((link, i) => (
+                <motion.a
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  initial={{ opacity: 0, x: -16 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.05, duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                  className="block text-base text-white font-medium py-2.5 border-b border-white/5 last:border-0 hover:text-zinc-300 transition-colors"
+                >
+                  {link.label}
+                </motion.a>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

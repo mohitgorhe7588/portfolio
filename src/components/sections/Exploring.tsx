@@ -1,5 +1,7 @@
 'use client';
 
+import FadeInUp, { StaggerContainer, StaggerItem } from '@/components/ui/FadeInUp';
+
 const explorations = [
   {
     title: 'Edge AI quantization & real-time vision on Raspberry Pi',
@@ -39,45 +41,48 @@ export default function Exploring() {
   return (
     <section id="notes" className="py-24 sm:py-36" aria-label="Workbench notes">
       <div className="section-container">
-        <div className="max-w-2xl mb-16 sm:mb-20">
-          <h2 className="text-3xl sm:text-5xl font-light text-zinc-950 tracking-tight">
-            Workbench notes
-          </h2>
-          <p className="mt-4 text-base sm:text-lg text-zinc-600 leading-relaxed font-light">
-            Current bench experiments, firmware tuning, and software tests.
-          </p>
-        </div>
+        <FadeInUp>
+          <div className="max-w-2xl mb-16 sm:mb-20">
+            <h2 className="text-3xl sm:text-5xl font-light text-zinc-950 tracking-tight">
+              Workbench notes
+            </h2>
+            <p className="mt-4 text-base sm:text-lg text-zinc-600 leading-relaxed font-light">
+              Current bench experiments, firmware tuning, and software tests.
+            </p>
+          </div>
+        </FadeInUp>
 
-        {/* Asymmetric 2-column grid — spacing instead of lines */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-14">
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-14">
           {explorations.map((item) => (
-            <div key={item.title} className="space-y-3">
-              <span className="text-xs font-mono uppercase text-zinc-400 block">
-                {item.category}
-              </span>
-              <h3 className="text-xl font-medium text-zinc-950 leading-snug">
-                {item.title}
-              </h3>
-              <p className="text-sm text-zinc-600 leading-relaxed">
-                {item.description}
-              </p>
-              <div className="text-xs text-zinc-700 bg-white p-3 font-mono leading-relaxed">
-                <span className="text-zinc-900 font-semibold block mb-0.5">Bench note:</span>
-                {item.notes}
+            <StaggerItem key={item.title}>
+              <div className="space-y-3 group">
+                <span className="text-xs font-mono uppercase text-zinc-400 block">
+                  {item.category}
+                </span>
+                <h3 className="text-xl font-medium text-zinc-950 leading-snug group-hover:text-black transition-colors">
+                  {item.title}
+                </h3>
+                <p className="text-sm text-zinc-600 leading-relaxed">
+                  {item.description}
+                </p>
+                <div className="text-xs text-zinc-700 bg-zinc-50 p-3 font-mono leading-relaxed border-l-2 border-zinc-300">
+                  <span className="text-zinc-900 font-semibold block mb-0.5">Bench note:</span>
+                  {item.notes}
+                </div>
+                <div className="flex flex-wrap gap-1.5 pt-1">
+                  {item.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-2 py-0.5 text-xs font-mono text-zinc-600 bg-zinc-100 hover:bg-zinc-200 transition-colors"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
-              <div className="flex flex-wrap gap-1.5 pt-1">
-                {item.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-2 py-0.5 text-xs font-mono text-zinc-600 bg-zinc-100"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </div>
     </section>
   );

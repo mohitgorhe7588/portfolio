@@ -6,6 +6,8 @@
   --bg-secondary: #fafafa;
   --bg-surface: #fafafa;
   --bg-subtle: #f4f4f5;
+  --bg-dark: #0a0a0f;
+  --bg-dark-surface: #111118;
 
   --accent-muted: #71717a;
   --accent-subtle: #a1a1aa;
@@ -17,6 +19,13 @@
   --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   --font-serif: 'Instrument Serif', Georgia, serif;
   --font-mono: 'JetBrains Mono', monospace;
+
+  /* Glass effect variables */
+  --glass-dark-bg: rgba(10, 10, 15, 0.45);
+  --glass-dark-border: rgba(255, 255, 255, 0.08);
+  --glass-light-bg: rgba(250, 250, 250, 0.75);
+  --glass-light-border: rgba(0, 0, 0, 0.07);
+  --glass-blur: blur(24px) saturate(180%);
 }
 
 @theme inline {
@@ -24,6 +33,7 @@
   --color-bg-secondary: var(--bg-secondary);
   --color-bg-surface: var(--bg-surface);
   --color-bg-subtle: var(--bg-subtle);
+  --color-bg-dark: var(--bg-dark);
   --color-accent-muted: var(--accent-muted);
   --color-text-primary: var(--text-primary);
   --color-text-secondary: var(--text-secondary);
@@ -55,6 +65,19 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Grain / Noise Texture Overlay ──────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  pointer-events: none;
+  opacity: 0.028;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 180px 180px;
 }
 
 /* ─── Content Width ───────────────────────────────────────── */
@@ -139,4 +162,77 @@ body {
 :focus-visible {
   outline: 1.5px solid #09090b;
   outline-offset: 2px;
+}
+
+/* ─── Dark Section ────────────────────────────────────────── */
+.section-dark {
+  background-color: var(--bg-dark);
+  color: #fafafa;
+}
+
+.section-dark .scroll-panel {
+  scrollbar-color: #3f3f46 #1a1a24;
+}
+
+.section-dark .scroll-panel::-webkit-scrollbar-track {
+  background: #1a1a24;
+}
+
+.section-dark .scroll-panel::-webkit-scrollbar-thumb {
+  background: #3f3f46;
+}
+
+/* ─── Glass Navbar ────────────────────────────────────────── */
+.navbar-glass-dark {
+  background: var(--glass-dark-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-bottom: 1px solid var(--glass-dark-border);
+}
+
+.navbar-glass-light {
+  background: var(--glass-light-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-bottom: 1px solid var(--glass-light-border);
+}
+
+/* ─── Skill Progress Bar ──────────────────────────────────── */
+.skill-bar-track {
+  height: 2px;
+  background: #e4e4e7;
+  width: 100%;
+  overflow: hidden;
+}
+
+.skill-bar-track-dark {
+  background: #27272a;
+}
+
+.skill-bar-fill {
+  height: 100%;
+  background: #09090b;
+  transform-origin: left;
+}
+
+.section-dark .skill-bar-fill {
+  background: #fafafa;
+}
+
+/* ─── Project Card Tilt ───────────────────────────────────── */
+.project-tilt-wrapper {
+  transform-style: preserve-3d;
+  perspective: 1200px;
+  transition: transform 0.05s linear;
+}
+
+/* ─── Hero Mobile Video ───────────────────────────────────── */
+.hero-video-desktop {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .hero-video-desktop {
+    display: block;
+  }
 }

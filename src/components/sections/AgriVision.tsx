@@ -1,5 +1,7 @@
 'use client';
 
+import FadeInUp, { StaggerContainer, StaggerItem } from '@/components/ui/FadeInUp';
+
 const layers = [
   {
     number: '04',
@@ -33,39 +35,47 @@ export default function AgriVision() {
       <div className="section-container">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
           <div className="lg:col-span-4 lg:sticky lg:top-28 space-y-4">
-            <h2 className="text-3xl sm:text-5xl font-light text-zinc-950 tracking-tight">
-              Agricultural automation
-            </h2>
-            <p className="text-base text-zinc-600 leading-relaxed font-light">
-              An engineering architecture designed to connect physical field sensing, computer vision, and automated valve control directly to farmers.
-            </p>
-            <div className="pt-4 text-xs font-mono text-zinc-500">
-              Field-first rule: Hardware durability in dusty, high-heat farmland takes priority over complex abstraction.
-            </div>
+            <FadeInUp>
+              <h2 className="text-3xl sm:text-5xl font-light text-zinc-950 tracking-tight">
+                Agricultural automation
+              </h2>
+              <p className="text-base text-zinc-600 leading-relaxed font-light">
+                An engineering architecture designed to connect physical field sensing, computer vision, and automated valve control directly to farmers.
+              </p>
+              <div className="pt-4 text-xs font-mono text-zinc-500">
+                Field-first rule: Hardware durability in dusty, high-heat farmland takes priority over complex abstraction.
+              </div>
+            </FadeInUp>
           </div>
 
           <div className="lg:col-span-8 lg:max-h-[70vh] scroll-panel space-y-10">
-            {layers.map((layer) => (
-              <div key={layer.number} className="space-y-3">
-                <div className="flex items-baseline gap-4">
-                  <span className="font-mono text-xs text-zinc-400">{layer.number}</span>
-                  <h3 className="text-xl font-medium text-zinc-900">{layer.title}</h3>
-                </div>
-                <p className="text-sm text-zinc-600 leading-relaxed max-w-2xl">
-                  {layer.summary}
-                </p>
-                <div className="flex flex-wrap gap-2 pt-2">
-                  {layer.items.map((item) => (
-                    <span
-                      key={item}
-                      className="px-2 py-0.5 text-xs font-mono text-zinc-700 bg-white"
-                    >
-                      {item}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
+            <StaggerContainer>
+              {layers.map((layer) => (
+                <StaggerItem key={layer.number}>
+                  <div className="space-y-3 group pb-8 border-b border-zinc-100 last:border-0">
+                    <div className="flex items-baseline gap-4">
+                      <span className="font-mono text-xs text-zinc-400">{layer.number}</span>
+                      <h3 className="text-xl font-medium text-zinc-900 group-hover:text-black transition-colors">
+                        {layer.title}
+                      </h3>
+                    </div>
+                    <p className="text-sm text-zinc-600 leading-relaxed max-w-2xl">
+                      {layer.summary}
+                    </p>
+                    <div className="flex flex-wrap gap-2 pt-2">
+                      {layer.items.map((item) => (
+                        <span
+                          key={item}
+                          className="px-2 py-0.5 text-xs font-mono text-zinc-700 bg-zinc-100 hover:bg-zinc-200 transition-colors"
+                        >
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
           </div>
         </div>
       </div>

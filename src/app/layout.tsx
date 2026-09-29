@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import DroneCursor from '@/components/ui/DroneCursor';
 
 export const metadata: Metadata = {
   title: {
@@ -43,6 +44,7 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col bg-[#fafafa] text-zinc-900 antialiased selection:bg-black selection:text-white">
+        <DroneCursor />
         {children}
       </body>
     </html>

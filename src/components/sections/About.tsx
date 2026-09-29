@@ -1,40 +1,82 @@
 'use client';
 
+import FadeInUp, { StaggerContainer, StaggerItem } from '@/components/ui/FadeInUp';
+import CountUp from '@/components/ui/CountUp';
+import MagneticButton from '@/components/ui/MagneticButton';
+
+const stats = [
+  { value: 7.65, label: 'CGPA', decimals: 2 },
+  { value: 2, label: 'Years Experience', decimals: 0, suffix: '+' },
+  { value: 3, label: 'Field Locations', decimals: 0 },
+  { value: 10, label: 'Projects Built', decimals: 0, suffix: '+' },
+];
+
 export default function About() {
   return (
     <section id="about" className="py-24 sm:py-36" aria-label="About">
       <div className="section-container">
+        {/* Stats row */}
+        <StaggerContainer className="grid grid-cols-2 sm:grid-cols-4 gap-8 mb-20 pb-16 border-b border-zinc-200">
+          {stats.map((stat, i) => (
+            <StaggerItem key={stat.label}>
+              <div className="space-y-1">
+                <div className="text-4xl sm:text-5xl font-light text-zinc-950 tracking-tight">
+                  <CountUp
+                    to={stat.value}
+                    decimals={stat.decimals ?? 0}
+                    suffix={stat.suffix ?? ''}
+                    duration={2.2}
+                  />
+                </div>
+                <p className="text-xs font-mono uppercase text-zinc-400 tracking-wider">{stat.label}</p>
+              </div>
+            </StaggerItem>
+          ))}
+        </StaggerContainer>
+
         {/* Asymmetric: 7 cols narrative / 5 cols quick facts */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Narrative */}
           <div className="lg:col-span-7 space-y-6 text-zinc-700 text-base leading-relaxed">
-            <h2 className="text-3xl sm:text-5xl font-light text-zinc-950 tracking-tight mb-8">
-              About me
-            </h2>
+            <FadeInUp>
+              <h2 className="text-3xl sm:text-5xl font-light text-zinc-950 tracking-tight mb-8">
+                About me
+              </h2>
+            </FadeInUp>
 
-            <p className="text-lg text-zinc-900 font-normal leading-relaxed">
-              I am an AI &amp; Data Science Engineer who spends most of my time connecting computer vision models with real-world drone and embedded hardware.
-            </p>
+            <FadeInUp delay={0.08}>
+              <p className="text-lg text-zinc-900 font-normal leading-relaxed">
+                I am an AI &amp; Data Science Engineer who spends most of my time connecting computer vision models with real-world drone and embedded hardware.
+              </p>
+            </FadeInUp>
 
-            <p>
-              My hands-on work centers on deploying vision systems using Python, YOLO, and OpenCV onto resource-constrained companion computers like Raspberry Pi. Rather than treating machine learning as purely abstract software, I configure flight controllers, flash MCU firmware, and design physical payload release systems so algorithms can act in the physical environment.
-            </p>
+            <FadeInUp delay={0.14}>
+              <p>
+                My hands-on work centers on deploying vision systems using Python, YOLO, and OpenCV onto resource-constrained companion computers like Raspberry Pi. Rather than treating machine learning as purely abstract software, I configure flight controllers, flash MCU firmware, and design physical payload release systems so algorithms can act in the physical environment.
+              </p>
+            </FadeInUp>
 
-            <div className="pl-4 py-1 text-zinc-900 font-medium">
-              I have worked directly with defense personnel during live field deployments in high-altitude and harsh conditions — including Leh and Jaipur — to calibrate flight parameters and validate operational payloads.
-            </div>
+            <FadeInUp delay={0.2}>
+              <div className="pl-4 py-1 border-l-2 border-zinc-900 text-zinc-900 font-medium">
+                I have worked directly with defense personnel during live field deployments in high-altitude and harsh conditions — including Leh and Jaipur — to calibrate flight parameters and validate operational payloads.
+              </div>
+            </FadeInUp>
 
-            <p>
-              Alongside drone integration, I build practical backend pipelines and document intelligence systems using LangChain, FAISS, and Google Gemini API to eliminate model hallucinations, as well as lightweight monitoring applications with Flask and Streamlit.
-            </p>
+            <FadeInUp delay={0.26}>
+              <p>
+                Alongside drone integration, I build practical backend pipelines and document intelligence systems using LangChain, FAISS, and Google Gemini API to eliminate model hallucinations, as well as lightweight monitoring applications with Flask and Streamlit.
+              </p>
+            </FadeInUp>
 
-            <p>
-              I am currently completing my Bachelor of Engineering in Artificial Intelligence &amp; Data Science at SNJB&apos;s College of Engineering Chandwad, Nashik, with a CGPA of 7.65.
-            </p>
+            <FadeInUp delay={0.32}>
+              <p>
+                I am currently completing my Bachelor of Engineering in Artificial Intelligence &amp; Data Science at SNJB&apos;s College of Engineering Chandwad, Nashik, with a CGPA of 7.65.
+              </p>
+            </FadeInUp>
           </div>
 
           {/* Quick Facts */}
-          <div className="lg:col-span-5 pt-8 lg:pt-0 lg:pl-12 space-y-6">
+          <FadeInUp delay={0.15} className="lg:col-span-5 pt-8 lg:pt-0 lg:pl-12 space-y-6">
             <h3 className="text-xs font-mono uppercase tracking-wider text-zinc-400">
               Details &amp; Field Work
             </h3>
@@ -68,8 +110,19 @@ export default function About() {
                   Python • OpenCV • YOLO • Raspberry Pi • LangChain • C++ • MAVLink • Betaflight • INAV
                 </span>
               </div>
+
+              <div className="pt-2">
+                <MagneticButton>
+                  <a
+                    href="#contact"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 bg-black text-white text-xs font-mono font-medium hover:bg-zinc-800 transition-colors"
+                  >
+                    Get in touch →
+                  </a>
+                </MagneticButton>
+              </div>
             </div>
-          </div>
+          </FadeInUp>
         </div>
       </div>
     </section>
