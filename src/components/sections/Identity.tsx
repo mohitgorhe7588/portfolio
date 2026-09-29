@@ -21,7 +21,7 @@ export default function Identity() {
           </div>
 
           {/* Right — scrollable panel */}
-          <div className="lg:col-span-8 lg:max-h-[70vh] scroll-panel space-y-10">
+          <div className="lg:col-span-8 space-y-10 lg:max-h-[70vh] lg:overflow-y-auto lg:pr-3">
             {/* Pipeline tags */}
             <FadeInUp delay={0.1}>
               <div className="pt-2">
