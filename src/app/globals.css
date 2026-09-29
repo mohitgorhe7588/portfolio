@@ -1,0 +1,142 @@
+@import "tailwindcss";
+
+/* ─── Strict Dual-Color (White & Black) Design Tokens ───── */
+:root {
+  --bg-primary: #fafafa;
+  --bg-secondary: #fafafa;
+  --bg-surface: #fafafa;
+  --bg-subtle: #f4f4f5;
+
+  --accent-muted: #71717a;
+  --accent-subtle: #a1a1aa;
+
+  --text-primary: #09090b;
+  --text-secondary: #52525b;
+  --text-muted: #71717a;
+
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+@theme inline {
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-bg-surface: var(--bg-surface);
+  --color-bg-subtle: var(--bg-subtle);
+  --color-accent-muted: var(--accent-muted);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --font-sans: var(--font-sans);
+  --font-serif: var(--font-serif);
+  --font-mono: var(--font-mono);
+}
+
+/* ─── Global Base ─────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Content Width ───────────────────────────────────────── */
+.section-container {
+  max-width: 82rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .section-container {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-container {
+    padding-left: 4.5rem;
+    padding-right: 4.5rem;
+  }
+}
+
+/* ─── Sharp Rectilinear Geometry ────────────────────────────── */
+* {
+  border-radius: 0;
+  box-shadow: none !important;
+}
+
+/* ─── Selection ───────────────────────────────────────────── */
+::selection {
+  background: #09090b;
+  color: #ffffff;
+}
+
+/* ─── Custom Scrollbar (main page) ──────────────────────────── */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d4d4d8;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #71717a;
+}
+
+/* ─── Independent scrollable panels ─────────────────────────── */
+.scroll-panel {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #a1a1aa #f4f4f5;
+  padding-right: 0.75rem;
+}
+
+.scroll-panel::-webkit-scrollbar {
+  width: 4px;
+}
+
+.scroll-panel::-webkit-scrollbar-track {
+  background: #f4f4f5;
+}
+
+.scroll-panel::-webkit-scrollbar-thumb {
+  background: #a1a1aa;
+}
+
+.scroll-panel::-webkit-scrollbar-thumb:hover {
+  background: #71717a;
+}
+
+/* ─── Focus ───────────────────────────────────────────────── */
+:focus-visible {
+  outline: 1.5px solid #09090b;
+  outline-offset: 2px;
+}
