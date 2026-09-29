@@ -91,14 +91,18 @@ export default function About() {
                 </span>
               </div>
 
-              {/* Wipe-up button — matches Contact section style */}
+              {/* Get in touch — split reveal: top half up, bottom half down */}
               <div className="pt-2">
                 <a
                   href="#contact"
-                  className="group relative inline-flex items-center gap-2 px-5 py-2.5 bg-black text-white text-xs font-mono font-medium overflow-hidden"
+                  className="group relative inline-flex items-center justify-center w-[148px] py-2.5 bg-black text-white text-xs font-mono font-medium overflow-hidden"
                 >
-                  <span className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]" />
-                  <span className="relative z-10 text-white group-hover:text-black transition-colors duration-300">
+                  {/* Top mask slides up */}
+                  <span className="absolute inset-x-0 top-0 h-1/2 bg-zinc-800 translate-y-0 group-hover:-translate-y-full transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]" />
+                  {/* Bottom mask slides down */}
+                  <span className="absolute inset-x-0 bottom-0 h-1/2 bg-zinc-800 translate-y-0 group-hover:translate-y-full transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]" />
+                  {/* Text always visible, color shifts */}
+                  <span className="relative z-10 transition-colors duration-200 group-hover:text-white">
                     Get in touch →
                   </span>
                 </a>

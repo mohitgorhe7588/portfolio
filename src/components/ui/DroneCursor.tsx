@@ -48,7 +48,7 @@ export default function DroneCursor() {
 
       const el = cursorRef.current;
       if (el) {
-        el.style.transform = `translate(${sp.x - 28}px, ${sp.y - 28}px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+        el.style.transform = `translate(${sp.x - 20}px, ${sp.y - 20}px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
       }
       rafRef.current = requestAnimationFrame(loop);
     };
@@ -68,7 +68,7 @@ export default function DroneCursor() {
 
   if (isMobile) return null;
 
-  const size = isHovering ? 62 : 56;
+  const size = isHovering ? 46 : 40;
 
   return (
     <>

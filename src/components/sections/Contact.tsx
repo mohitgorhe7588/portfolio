@@ -91,27 +91,38 @@ export default function Contact() {
               <div>
                 <span className="text-xs font-mono uppercase text-zinc-400 block mb-4">Profiles</span>
                 <div className="flex flex-wrap gap-4">
-                  {/* LinkedIn — slide-underline style */}
+
+                  {/* LinkedIn — text slides left + arrow slides in from right */}
                   <a
                     href={linkedinUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group relative inline-flex items-center gap-2 px-5 py-2.5 bg-black text-white text-xs font-mono font-medium overflow-hidden"
+                    className="group relative inline-flex items-center px-5 py-2.5 bg-black text-white text-xs font-mono font-medium overflow-hidden w-[140px] justify-center"
                   >
-                    <span className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]" />
-                    <span className="relative z-10 text-white group-hover:text-black transition-colors duration-300">LinkedIn ↗</span>
+                    {/* Default label slides out left */}
+                    <span className="absolute inset-0 flex items-center justify-center gap-1.5 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-x-full">
+                      LinkedIn ↗
+                    </span>
+                    {/* Hover label slides in from right */}
+                    <span className="absolute inset-0 flex items-center justify-center gap-1.5 translate-x-full transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-0 text-white">
+                      Connect →
+                    </span>
                   </a>
 
-                  {/* GitHub — same wipe effect */}
+                  {/* GitHub — border wipe + bg invert */}
                   <a
                     href={githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group relative inline-flex items-center gap-2 px-5 py-2.5 border border-zinc-900 text-zinc-900 text-xs font-mono font-medium overflow-hidden"
+                    className="group relative inline-flex items-center px-5 py-2.5 border border-zinc-900 text-zinc-900 text-xs font-mono font-medium overflow-hidden w-[140px] justify-center"
                   >
-                    <span className="absolute inset-0 bg-zinc-900 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]" />
-                    <span className="relative z-10 text-zinc-900 group-hover:text-white transition-colors duration-300">GitHub ↗</span>
+                    {/* bg wipes up */}
+                    <span className="absolute inset-0 bg-zinc-900 origin-bottom scale-y-0 group-hover:scale-y-100 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]" />
+                    <span className="relative z-10 transition-colors duration-200 group-hover:text-white">
+                      GitHub ↗
+                    </span>
                   </a>
+
                 </div>
               </div>
             </FadeInUp>
