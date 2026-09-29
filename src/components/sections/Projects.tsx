@@ -9,8 +9,8 @@ function ProjectTiltCard({ children }: { children: React.ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-  const rotateX = useTransform(y, [-0.5, 0.5], [6, -6]);
-  const rotateY = useTransform(x, [-0.5, 0.5], [-6, 6]);
+  const rotateX = useTransform(y, [-0.5, 0.5], [5, -5]);
+  const rotateY = useTransform(x, [-0.5, 0.5], [-5, 5]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!ref.current) return;
@@ -19,10 +19,7 @@ function ProjectTiltCard({ children }: { children: React.ReactNode }) {
     y.set((e.clientY - rect.top) / rect.height - 0.5);
   };
 
-  const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
-  };
+  const handleMouseLeave = () => { x.set(0); y.set(0); };
 
   return (
     <motion.div
@@ -30,7 +27,6 @@ function ProjectTiltCard({ children }: { children: React.ReactNode }) {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{ rotateX, rotateY, transformStyle: 'preserve-3d', perspective: 1200 }}
-      transition={{ type: 'spring', stiffness: 300, damping: 30 }}
       className="relative group"
     >
       {children}
@@ -44,7 +40,7 @@ function FeaturedProjectItem({ project, index }: { project: Project; index: numb
   return (
     <FadeInUp delay={index * 0.1}>
       <ProjectTiltCard>
-        <article className="pt-10 sm:pt-14 pb-12 sm:pb-16 border border-transparent group-hover:border-zinc-200 transition-all duration-300 px-0 group-hover:px-6 rounded-none">
+        <article className="pt-10 sm:pt-14 pb-12 sm:pb-16 border-b border-zinc-100 last:border-0 group-hover:bg-zinc-50 transition-colors duration-300 px-0 group-hover:px-5">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
             {/* Left Column */}
             <div className="lg:col-span-5 space-y-4">
@@ -56,21 +52,13 @@ function FeaturedProjectItem({ project, index }: { project: Project; index: numb
                   {project.statusLabel}
                 </span>
               </div>
-
               <h3 className="text-2xl sm:text-3xl font-light text-zinc-950 tracking-tight leading-snug">
                 {project.title}
               </h3>
-
-              <p className="text-sm font-mono text-zinc-600">
-                {project.subtitle}
-              </p>
-
+              <p className="text-sm font-mono text-zinc-600">{project.subtitle}</p>
               <div className="flex flex-wrap gap-1.5 pt-2">
                 {project.technologies.map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-2 py-0.5 text-xs font-mono text-zinc-700 bg-zinc-100"
-                  >
+                  <span key={tech} className="px-2 py-0.5 text-xs font-mono text-zinc-700 bg-zinc-100">
                     {tech}
                   </span>
                 ))}
@@ -79,19 +67,18 @@ function FeaturedProjectItem({ project, index }: { project: Project; index: numb
 
             {/* Right Column */}
             <div className="lg:col-span-7 space-y-6">
-              <p className="text-base text-zinc-700 leading-relaxed">
-                {project.description}
-              </p>
+              <p className="text-base text-zinc-700 leading-relaxed">{project.description}</p>
 
               {project.keyPoints && (
                 <div className="space-y-2 pl-4 py-1">
-                  <span className="text-xs font-mono uppercase tracking-wider text-zinc-900 font-semibold block mb-2">
+                  <span className="text-xs font-mono uppercase tracking-wider text-zinc-900 font-semibold block mb-3">
                     Engineering deliverables
                   </span>
-                  <ul className="space-y-2">
+                  <ul className="space-y-2.5">
                     {project.keyPoints.map((point, i) => (
-                      <li key={i} className="text-sm text-zinc-600 leading-relaxed flex items-start gap-2">
-                        <span className="text-zinc-900 mt-1 font-bold">•</span>
+                      <li key={i} className="text-sm text-zinc-600 leading-relaxed flex items-start gap-3">
+                        {/* Custom bullet: small filled diamond */}
+                        <span className="mt-[5px] shrink-0 w-1.5 h-1.5 bg-zinc-800 rotate-45 inline-block" />
                         <span>{point}</span>
                       </li>
                     ))}
@@ -103,9 +90,11 @@ function FeaturedProjectItem({ project, index }: { project: Project; index: numb
                 <div>
                   <button
                     onClick={() => setIsOpen(!isOpen)}
-                    className="text-xs font-mono text-zinc-900 underline underline-offset-4 hover:text-zinc-500 transition-colors cursor-pointer"
+                    className="group/btn text-xs font-mono text-zinc-900 flex items-center gap-2 hover:gap-3 transition-all duration-200 cursor-pointer"
                   >
-                    {isOpen ? 'Close technical notes ↑' : 'Read technical notes and architecture ↓'}
+                    <span className="h-px w-4 bg-zinc-400 group-hover/btn:w-6 transition-all duration-200" />
+                    {isOpen ? 'Close technical notes' : 'Read technical notes and architecture'}
+                    <span className="transition-transform duration-200 inline-block">{isOpen ? '↑' : '↓'}</span>
                   </button>
 
                   <AnimatePresence>
@@ -114,42 +103,31 @@ function FeaturedProjectItem({ project, index }: { project: Project; index: numb
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.28 }}
+                        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                         className="overflow-hidden"
                       >
-                        <div className="pt-6 mt-4 space-y-5 text-sm">
+                        <div className="pt-6 mt-4 space-y-5 text-sm border-l border-zinc-200 pl-4">
                           {project.problem && (
                             <div>
-                              <span className="text-xs font-mono uppercase text-zinc-400 block mb-1">
-                                The challenge
-                              </span>
+                              <span className="text-xs font-mono uppercase text-zinc-400 block mb-1">The challenge</span>
                               <p className="text-zinc-700 leading-relaxed">{project.problem}</p>
                             </div>
                           )}
-
                           {project.systemArchitecture && (
                             <div>
-                              <span className="text-xs font-mono uppercase text-zinc-400 block mb-1">
-                                System architecture
-                              </span>
+                              <span className="text-xs font-mono uppercase text-zinc-400 block mb-1">System architecture</span>
                               <p className="text-zinc-700 leading-relaxed">{project.systemArchitecture}</p>
                             </div>
                           )}
-
                           {project.implementation && (
                             <div>
-                              <span className="text-xs font-mono uppercase text-zinc-400 block mb-1">
-                                Implementation
-                              </span>
+                              <span className="text-xs font-mono uppercase text-zinc-400 block mb-1">Implementation</span>
                               <p className="text-zinc-700 leading-relaxed">{project.implementation}</p>
                             </div>
                           )}
-
                           {project.learnings && (
                             <div>
-                              <span className="text-xs font-mono uppercase text-zinc-400 block mb-1">
-                                Field learnings
-                              </span>
+                              <span className="text-xs font-mono uppercase text-zinc-400 block mb-1">Field learnings</span>
                               <p className="text-zinc-700 leading-relaxed">{project.learnings}</p>
                             </div>
                           )}
@@ -169,14 +147,14 @@ function FeaturedProjectItem({ project, index }: { project: Project; index: numb
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-24 sm:py-36 bg-[#0a0a0f]" aria-label="Projects">
+    <section id="projects" className="py-24 sm:py-36 bg-[#fafafa]" aria-label="Projects">
       <div className="section-container">
         <FadeInUp>
           <div className="max-w-2xl mb-16 sm:mb-20">
-            <h2 className="text-3xl sm:text-5xl font-light text-white tracking-tight">
+            <h2 className="text-3xl sm:text-5xl font-light text-zinc-950 tracking-tight">
               Projects
             </h2>
-            <p className="mt-4 text-base sm:text-lg text-zinc-400 leading-relaxed font-light">
+            <p className="mt-4 text-base sm:text-lg text-zinc-600 leading-relaxed font-light">
               Systems developed across computer vision, edge compute on companion computers,
               payload actuation, and generative AI.
             </p>
@@ -184,35 +162,20 @@ export default function Projects() {
         </FadeInUp>
 
         {/* Featured Case Studies */}
-        <div className="space-y-6">
+        <div className="space-y-0">
           {featuredProjects.map((project, i) => (
-            <div key={project.id} className="text-zinc-100">
-              <style>{`
-                #projects .text-zinc-950 { color: #fafafa; }
-                #projects .text-zinc-700 { color: #a1a1aa; }
-                #projects .text-zinc-600 { color: #71717a; }
-                #projects .text-zinc-500 { color: #52525b; }
-                #projects .text-zinc-400 { color: #3f3f46; }
-                #projects .bg-zinc-100 { background-color: #18181b; }
-                #projects .text-zinc-700.bg-zinc-100 { color: #a1a1aa; }
-                #projects article { border-color: #27272a !important; }
-                #projects article:hover { border-color: #3f3f46 !important; }
-                #projects .text-zinc-900 { color: #e4e4e7; }
-                #projects .underline { color: #e4e4e7; }
-              `}</style>
-              <FeaturedProjectItem project={project} index={i} />
-            </div>
+            <FeaturedProjectItem key={project.id} project={project} index={i} />
           ))}
         </div>
 
         {/* Secondary Projects */}
-        <div className="mt-20 pt-16">
+        <div className="mt-20 pt-16 border-t border-zinc-100">
           <FadeInUp>
             <div className="max-w-xl mb-12">
-              <h3 className="text-xl sm:text-2xl font-normal text-white tracking-tight">
+              <h3 className="text-xl sm:text-2xl font-normal text-zinc-950 tracking-tight">
                 Hardware, IoT &amp; Flight Systems
               </h3>
-              <p className="mt-2 text-sm text-zinc-400">
+              <p className="mt-2 text-sm text-zinc-600">
                 Microcontroller firmware, telemetry analysis, and physical actuation builds from my CV.
               </p>
             </div>
@@ -221,16 +184,14 @@ export default function Projects() {
           <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
             {otherProjects.map((project) => (
               <StaggerItem key={project.id}>
-                <div className="pt-5 space-y-2 group hover:translate-y-[-3px] transition-transform duration-300">
-                  <div className="flex items-center justify-between text-xs font-mono text-zinc-500">
+                <div className="pt-5 space-y-2 group hover:-translate-y-1 transition-transform duration-300">
+                  <div className="flex items-center justify-between text-xs font-mono text-zinc-400">
                     <span>{project.statusLabel}</span>
-                    <span className="text-zinc-600">{project.technologies.slice(0, 3).join(' • ')}</span>
+                    <span className="text-zinc-500">{project.technologies.slice(0, 3).join(' · ')}</span>
                   </div>
-                  <h4 className="text-lg font-medium text-zinc-100">{project.title}</h4>
+                  <h4 className="text-lg font-medium text-zinc-900">{project.title}</h4>
                   <p className="text-xs font-mono text-zinc-500">{project.subtitle}</p>
-                  <p className="text-sm text-zinc-400 leading-relaxed pt-1">
-                    {project.description}
-                  </p>
+                  <p className="text-sm text-zinc-600 leading-relaxed pt-1">{project.description}</p>
                 </div>
               </StaggerItem>
             ))}
@@ -238,23 +199,24 @@ export default function Projects() {
         </div>
 
         {/* Additional research builds */}
-        <div className="mt-20 pt-12">
+        <div className="mt-20 pt-12 border-t border-zinc-100">
           <FadeInUp>
-            <h3 className="text-sm font-mono uppercase tracking-wider text-zinc-600 mb-6">
+            <h3 className="text-sm font-mono uppercase tracking-wider text-zinc-400 mb-6">
               Additional research builds
             </h3>
           </FadeInUp>
-          <StaggerContainer className="space-y-1">
+          <StaggerContainer className="space-y-0">
             {experiments.map((item) => (
               <StaggerItem key={item.id}>
-                <div
-                  className="py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-sm border-b border-zinc-800 last:border-0"
-                >
-                  <div>
-                    <span className="font-medium text-zinc-200">{item.title}</span>
-                    <span className="text-zinc-500 text-xs font-mono ml-3">{item.subtitle}</span>
+                <div className="py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-sm border-b border-zinc-100 last:border-0 hover:bg-zinc-50 transition-colors px-1">
+                  <div className="flex items-start gap-3">
+                    <span className="mt-[6px] shrink-0 w-1.5 h-1.5 bg-zinc-400 rotate-45 inline-block" />
+                    <div>
+                      <span className="font-medium text-zinc-900">{item.title}</span>
+                      <span className="text-zinc-500 text-xs font-mono ml-3">{item.subtitle}</span>
+                    </div>
                   </div>
-                  <span className="text-xs font-mono text-zinc-600">{item.technologies.join(', ')}</span>
+                  <span className="text-xs font-mono text-zinc-400 shrink-0">{item.technologies.join(', ')}</span>
                 </div>
               </StaggerItem>
             ))}

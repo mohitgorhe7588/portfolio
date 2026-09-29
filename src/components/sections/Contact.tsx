@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import FadeInUp from '@/components/ui/FadeInUp';
-import MagneticButton from '@/components/ui/MagneticButton';
 
 export default function Contact() {
   const [copiedEmail, setCopiedEmail] = useState(false);
@@ -26,16 +25,15 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 sm:py-36 bg-[#0a0a0f]" aria-label="Contact">
+    <section id="contact" className="py-24 sm:py-36 bg-[#fafafa]" aria-label="Contact">
       <div className="section-container">
-        {/* Asymmetric: 5 cols text / 7 cols links */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Left */}
           <FadeInUp className="lg:col-span-5 space-y-4">
-            <h2 className="text-3xl sm:text-5xl font-light text-white tracking-tight">
+            <h2 className="text-3xl sm:text-5xl font-light text-zinc-950 tracking-tight">
               Get in touch
             </h2>
-            <p className="text-base text-zinc-400 leading-relaxed font-light">
+            <p className="text-base text-zinc-600 leading-relaxed font-light">
               I am open to engineering roles, defense &amp; agricultural drone projects, and embedded computer vision work.
             </p>
             <div className="pt-4 text-xs font-mono text-zinc-500 space-y-1">
@@ -49,21 +47,19 @@ export default function Contact() {
             {/* Email */}
             <FadeInUp delay={0.1}>
               <div>
-                <span className="text-xs font-mono uppercase text-zinc-500 block mb-2">
-                  Email
-                </span>
+                <span className="text-xs font-mono uppercase text-zinc-400 block mb-2">Email</span>
                 <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-3">
                   <a
                     href={`mailto:${email}`}
-                    className="text-xl sm:text-2xl font-normal text-zinc-100 hover:underline underline-offset-4 break-all"
+                    className="text-xl sm:text-2xl font-normal text-zinc-950 hover:underline underline-offset-4 break-all transition-colors hover:text-zinc-600"
                   >
                     {email}
                   </a>
                   <button
                     onClick={copyEmail}
-                    className="self-start text-xs font-mono text-zinc-300 hover:text-white px-3 py-1 cursor-pointer bg-zinc-800 hover:bg-zinc-700 transition-colors"
+                    className="self-start text-xs font-mono text-zinc-600 hover:text-black px-3 py-1 cursor-pointer bg-zinc-100 hover:bg-zinc-200 transition-all duration-200 border border-transparent hover:border-zinc-300"
                   >
-                    {copiedEmail ? 'Copied ✓' : 'Copy email'}
+                    {copiedEmail ? '✓ Copied' : 'Copy email'}
                   </button>
                 </div>
               </div>
@@ -72,21 +68,19 @@ export default function Contact() {
             {/* Phone */}
             <FadeInUp delay={0.18}>
               <div>
-                <span className="text-xs font-mono uppercase text-zinc-500 block mb-2">
-                  Phone &amp; WhatsApp
-                </span>
+                <span className="text-xs font-mono uppercase text-zinc-400 block mb-2">Phone &amp; WhatsApp</span>
                 <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-3">
                   <a
                     href={`tel:${phone.replace(/\s+/g, '')}`}
-                    className="text-xl sm:text-2xl font-normal text-zinc-100 hover:underline underline-offset-4"
+                    className="text-xl sm:text-2xl font-normal text-zinc-950 hover:underline underline-offset-4 transition-colors hover:text-zinc-600"
                   >
                     {phone}
                   </a>
                   <button
                     onClick={copyPhone}
-                    className="self-start text-xs font-mono text-zinc-300 hover:text-white px-3 py-1 cursor-pointer bg-zinc-800 hover:bg-zinc-700 transition-colors"
+                    className="self-start text-xs font-mono text-zinc-600 hover:text-black px-3 py-1 cursor-pointer bg-zinc-100 hover:bg-zinc-200 transition-all duration-200 border border-transparent hover:border-zinc-300"
                   >
-                    {copiedPhone ? 'Copied ✓' : 'Copy phone'}
+                    {copiedPhone ? '✓ Copied' : 'Copy phone'}
                   </button>
                 </div>
               </div>
@@ -95,30 +89,29 @@ export default function Contact() {
             {/* Profiles */}
             <FadeInUp delay={0.26}>
               <div>
-                <span className="text-xs font-mono uppercase text-zinc-500 block mb-3">
-                  Profiles
-                </span>
+                <span className="text-xs font-mono uppercase text-zinc-400 block mb-4">Profiles</span>
                 <div className="flex flex-wrap gap-4">
-                  <MagneticButton>
-                    <a
-                      href={linkedinUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-4 py-2.5 bg-white text-black text-xs font-mono font-medium hover:bg-zinc-200 transition-colors"
-                    >
-                      LinkedIn profile ↗
-                    </a>
-                  </MagneticButton>
-                  <MagneticButton>
-                    <a
-                      href={githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-4 py-2.5 bg-zinc-800 text-zinc-100 text-xs font-mono font-medium hover:bg-zinc-700 transition-colors"
-                    >
-                      GitHub profile ↗
-                    </a>
-                  </MagneticButton>
+                  {/* LinkedIn — slide-underline style */}
+                  <a
+                    href={linkedinUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group relative inline-flex items-center gap-2 px-5 py-2.5 bg-black text-white text-xs font-mono font-medium overflow-hidden"
+                  >
+                    <span className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]" />
+                    <span className="relative z-10 text-white group-hover:text-black transition-colors duration-300">LinkedIn ↗</span>
+                  </a>
+
+                  {/* GitHub — same wipe effect */}
+                  <a
+                    href={githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group relative inline-flex items-center gap-2 px-5 py-2.5 border border-zinc-900 text-zinc-900 text-xs font-mono font-medium overflow-hidden"
+                  >
+                    <span className="absolute inset-0 bg-zinc-900 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]" />
+                    <span className="relative z-10 text-zinc-900 group-hover:text-white transition-colors duration-300">GitHub ↗</span>
+                  </a>
                 </div>
               </div>
             </FadeInUp>

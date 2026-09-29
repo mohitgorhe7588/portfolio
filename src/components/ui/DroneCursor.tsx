@@ -3,153 +3,185 @@ import { useEffect, useRef, useState } from 'react';
 
 export default function DroneCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
-  const posRef = useRef({ x: -100, y: -100 });
+  const posRef = useRef({ x: -200, y: -200 });
+  const smoothPosRef = useRef({ x: -200, y: -200 });
   const velRef = useRef({ x: 0, y: 0 });
-  const prevPosRef = useRef({ x: -100, y: -100 });
   const rafRef = useRef<number>(0);
-  const [isHoveringInteractive, setIsHoveringInteractive] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
   const [showShockwave, setShowShockwave] = useState(false);
-  const [propSpeed, setPropSpeed] = useState(0.4);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(true);
 
   useEffect(() => {
-    setIsMobile(window.innerWidth < 768);
-    const handleResize = () => setIsMobile(window.innerWidth < 768);
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
   }, []);
 
   useEffect(() => {
     if (isMobile) return;
 
-    const handleMouseMove = (e: MouseEvent) => {
-      posRef.current = { x: e.clientX, y: e.clientY };
+    const onMove = (e: MouseEvent) => { posRef.current = { x: e.clientX, y: e.clientY }; };
+    const onOver = (e: MouseEvent) => {
+      const t = e.target as HTMLElement;
+      setIsHovering(!!t.closest('a, button, [role="button"]'));
     };
-
-    const handleMouseOver = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      const isInteractive = target.closest('a, button, [role="button"]');
-      setIsHoveringInteractive(!!isInteractive);
-      setPropSpeed(isInteractive ? 0.15 : 0.4);
-    };
-
-    const handleClick = () => {
+    const onClick = () => {
       setShowShockwave(true);
-      setTimeout(() => setShowShockwave(false), 600);
+      setTimeout(() => setShowShockwave(false), 700);
     };
 
-    let tiltX = 0;
-    let tiltY = 0;
+    let tiltX = 0, tiltY = 0;
 
-    const animate = () => {
+    const loop = () => {
+      const sp = smoothPosRef.current;
+      const tp = posRef.current;
+      const lerpFactor = 0.18;
+      sp.x += (tp.x - sp.x) * lerpFactor;
+      sp.y += (tp.y - sp.y) * lerpFactor;
+
+      velRef.current = { x: tp.x - sp.x, y: tp.y - sp.y };
+      const tX = Math.max(-14, Math.min(14, velRef.current.y * 2));
+      const tY = Math.max(-14, Math.min(14, -velRef.current.x * 2));
+      tiltX += (tX - tiltX) * 0.12;
+      tiltY += (tY - tiltY) * 0.12;
+
       const el = cursorRef.current;
-      if (!el) { rafRef.current = requestAnimationFrame(animate); return; }
-
-      velRef.current = {
-        x: posRef.current.x - prevPosRef.current.x,
-        y: posRef.current.y - prevPosRef.current.y,
-      };
-      prevPosRef.current = { ...posRef.current };
-
-      const targetTiltX = Math.max(-12, Math.min(12, velRef.current.y * 1.5));
-      const targetTiltY = Math.max(-12, Math.min(12, -velRef.current.x * 1.5));
-      tiltX += (targetTiltX - tiltX) * 0.15;
-      tiltY += (targetTiltY - tiltY) * 0.15;
-
-      el.style.transform = `translate(${posRef.current.x - 20}px, ${posRef.current.y - 20}px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale(${isHoveringInteractive ? 1.4 : 1})`;
-      rafRef.current = requestAnimationFrame(animate);
+      if (el) {
+        el.style.transform = `translate(${sp.x - 28}px, ${sp.y - 28}px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+      }
+      rafRef.current = requestAnimationFrame(loop);
     };
 
-    window.addEventListener('mousemove', handleMouseMove, { passive: true });
-    window.addEventListener('mouseover', handleMouseOver, { passive: true });
-    window.addEventListener('click', handleClick);
-    rafRef.current = requestAnimationFrame(animate);
+    window.addEventListener('mousemove', onMove, { passive: true });
+    window.addEventListener('mouseover', onOver, { passive: true });
+    window.addEventListener('click', onClick);
+    rafRef.current = requestAnimationFrame(loop);
 
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('mouseover', handleMouseOver);
-      window.removeEventListener('click', handleClick);
+      window.removeEventListener('mousemove', onMove);
+      window.removeEventListener('mouseover', onOver);
+      window.removeEventListener('click', onClick);
       cancelAnimationFrame(rafRef.current);
     };
-  }, [isMobile, isHoveringInteractive]);
+  }, [isMobile]);
 
   if (isMobile) return null;
+
+  const size = isHovering ? 62 : 56;
 
   return (
     <>
       <style>{`
         * { cursor: none !important; }
-        @keyframes spin-prop { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        @keyframes shockwave { 0% { transform: translate(-50%, -50%) scale(0); opacity: 0.6; } 100% { transform: translate(-50%, -50%) scale(3); opacity: 0; } }
-        .prop-spin { animation: spin-prop var(--prop-speed, 0.4s) linear infinite; transform-origin: center; }
-        .shockwave-ring { position: fixed; width: 40px; height: 40px; border-radius: 50%; border: 1.5px solid #000; animation: shockwave 0.6s ease-out forwards; pointer-events: none; z-index: 9999; }
+
+        @keyframes prop-cw {
+          from { transform: rotate(0deg); }
+          to   { transform: rotate(360deg); }
+        }
+        @keyframes prop-ccw {
+          from { transform: rotate(0deg); }
+          to   { transform: rotate(-360deg); }
+        }
+        @keyframes sw-expand {
+          0%   { transform: translate(-50%,-50%) scale(0.2); opacity: 0.55; }
+          100% { transform: translate(-50%,-50%) scale(2.8); opacity: 0; }
+        }
+        @keyframes cursor-pulse {
+          0%,100% { filter: drop-shadow(0 0 3px rgba(0,0,0,0.35)); }
+          50%      { filter: drop-shadow(0 0 8px rgba(0,0,0,0.55)); }
+        }
+
+        .drone-svg { animation: cursor-pulse 2.4s ease-in-out infinite; }
+
+        .p-cw-fast  { animation: prop-cw  0.12s linear infinite; transform-origin: center; }
+        .p-ccw-fast { animation: prop-ccw 0.12s linear infinite; transform-origin: center; }
+        .p-cw-slow  { animation: prop-cw  0.22s linear infinite; transform-origin: center; }
+        .p-ccw-slow { animation: prop-ccw 0.22s linear infinite; transform-origin: center; }
+
+        .sw-ring {
+          position: fixed;
+          width: 56px; height: 56px;
+          border: 1.5px solid #000;
+          border-radius: 50%;
+          pointer-events: none;
+          z-index: 99998;
+          animation: sw-expand 0.7s ease-out forwards;
+          transform-origin: center;
+        }
       `}</style>
 
-      {/* Shockwave */}
       {showShockwave && (
-        <div
-          className="shockwave-ring"
-          style={{ left: posRef.current.x, top: posRef.current.y }}
-        />
+        <div className="sw-ring" style={{ left: posRef.current.x, top: posRef.current.y }} />
       )}
 
-      {/* Drone cursor */}
       <div
         ref={cursorRef}
         style={{
           position: 'fixed',
-          top: 0,
-          left: 0,
-          width: 40,
-          height: 40,
+          top: 0, left: 0,
+          width: size, height: size,
           pointerEvents: 'none',
           zIndex: 99999,
           transformStyle: 'preserve-3d',
-          transition: 'transform 0.05s linear',
+          transition: 'width 0.2s ease, height 0.2s ease',
         }}
       >
+        {/* Realistic FPV top-down drone SVG */}
         <svg
-          width="40"
-          height="40"
-          viewBox="0 0 40 40"
+          className="drone-svg"
+          width={size} height={size}
+          viewBox="0 0 56 56"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          {/* Center body */}
-          <rect x="17" y="17" width="6" height="6" rx="1" fill="black" />
-          {/* Arms */}
-          <line x1="20" y1="20" x2="8" y2="8" stroke="black" strokeWidth="1.5" />
-          <line x1="20" y1="20" x2="32" y2="8" stroke="black" strokeWidth="1.5" />
-          <line x1="20" y1="20" x2="8" y2="32" stroke="black" strokeWidth="1.5" />
-          <line x1="20" y1="20" x2="32" y2="32" stroke="black" strokeWidth="1.5" />
+          {/* ── Arms ── */}
+          <line x1="28" y1="28" x2="10" y2="10" stroke="#111" strokeWidth="2.2" strokeLinecap="round"/>
+          <line x1="28" y1="28" x2="46" y2="10" stroke="#111" strokeWidth="2.2" strokeLinecap="round"/>
+          <line x1="28" y1="28" x2="10" y2="46" stroke="#111" strokeWidth="2.2" strokeLinecap="round"/>
+          <line x1="28" y1="28" x2="46" y2="46" stroke="#111" strokeWidth="2.2" strokeLinecap="round"/>
 
-          {/* Propeller circles - top-left */}
-          <g style={{ '--prop-speed': propSpeed + 's' } as React.CSSProperties}>
-            <g className="prop-spin" style={{ transformOrigin: '8px 8px' }}>
-              <ellipse cx="8" cy="8" rx="5" ry="2" fill="none" stroke="black" strokeWidth="1.2" />
-            </g>
+          {/* ── Motor mounts (circles at arm ends) ── */}
+          <circle cx="10" cy="10" r="4" fill="#222" stroke="#555" strokeWidth="1"/>
+          <circle cx="46" cy="10" r="4" fill="#222" stroke="#555" strokeWidth="1"/>
+          <circle cx="10" cy="46" r="4" fill="#222" stroke="#555" strokeWidth="1"/>
+          <circle cx="46" cy="46" r="4" fill="#222" stroke="#555" strokeWidth="1"/>
+
+          {/* ── Propellers (spinning) ── */}
+          {/* TL — CW */}
+          <g style={{ transformOrigin: '10px 10px' }} className={isHovering ? 'p-cw-fast' : 'p-cw-slow'}>
+            <ellipse cx="10" cy="10" rx="8.5" ry="2.2" fill="rgba(0,0,0,0.18)" stroke="#222" strokeWidth="0.9"/>
           </g>
-          {/* top-right */}
-          <g style={{ '--prop-speed': propSpeed + 's' } as React.CSSProperties}>
-            <g className="prop-spin" style={{ transformOrigin: '32px 8px', animationDirection: 'reverse' }}>
-              <ellipse cx="32" cy="8" rx="5" ry="2" fill="none" stroke="black" strokeWidth="1.2" />
-            </g>
+          {/* TR — CCW */}
+          <g style={{ transformOrigin: '46px 10px' }} className={isHovering ? 'p-ccw-fast' : 'p-ccw-slow'}>
+            <ellipse cx="46" cy="10" rx="8.5" ry="2.2" fill="rgba(0,0,0,0.18)" stroke="#222" strokeWidth="0.9"/>
           </g>
-          {/* bottom-left */}
-          <g style={{ '--prop-speed': propSpeed + 's' } as React.CSSProperties}>
-            <g className="prop-spin" style={{ transformOrigin: '8px 32px', animationDirection: 'reverse' }}>
-              <ellipse cx="8" cy="32" rx="5" ry="2" fill="none" stroke="black" strokeWidth="1.2" />
-            </g>
+          {/* BL — CCW */}
+          <g style={{ transformOrigin: '10px 46px' }} className={isHovering ? 'p-ccw-fast' : 'p-ccw-slow'}>
+            <ellipse cx="10" cy="46" rx="8.5" ry="2.2" fill="rgba(0,0,0,0.18)" stroke="#222" strokeWidth="0.9"/>
           </g>
-          {/* bottom-right */}
-          <g style={{ '--prop-speed': propSpeed + 's' } as React.CSSProperties}>
-            <g className="prop-spin" style={{ transformOrigin: '32px 32px' }}>
-              <ellipse cx="32" cy="32" rx="5" ry="2" fill="none" stroke="black" strokeWidth="1.2" />
-            </g>
+          {/* BR — CW */}
+          <g style={{ transformOrigin: '46px 46px' }} className={isHovering ? 'p-cw-fast' : 'p-cw-slow'}>
+            <ellipse cx="46" cy="46" rx="8.5" ry="2.2" fill="rgba(0,0,0,0.18)" stroke="#222" strokeWidth="0.9"/>
           </g>
 
-          {/* Camera dot */}
-          <circle cx="20" cy="20" r="1.5" fill="white" />
+          {/* ── Body frame — center plate ── */}
+          <rect x="20" y="20" width="16" height="16" rx="2" fill="#111" stroke="#444" strokeWidth="0.8"/>
+
+          {/* ── FC board lines (detail) ── */}
+          <line x1="23" y1="28" x2="33" y2="28" stroke="#555" strokeWidth="0.7"/>
+          <line x1="28" y1="23" x2="28" y2="33" stroke="#555" strokeWidth="0.7"/>
+
+          {/* ── Camera module (front-facing pod) ── */}
+          <rect x="24" y="18" width="8" height="5" rx="1" fill="#333" stroke="#555" strokeWidth="0.7"/>
+          <circle cx="28" cy="20.5" r="2" fill="#000" stroke="#777" strokeWidth="0.6"/>
+          <circle cx="28" cy="20.5" r="0.8" fill="#fff" opacity="0.7"/>
+
+          {/* ── LED dots (corner accent) ── */}
+          <circle cx="10" cy="10" r="1.2" fill={isHovering ? '#fff' : '#aaa'} opacity="0.9"/>
+          <circle cx="46" cy="10" r="1.2" fill={isHovering ? '#fff' : '#aaa'} opacity="0.9"/>
+          <circle cx="10" cy="46" r="1.2" fill="#888" opacity="0.7"/>
+          <circle cx="46" cy="46" r="1.2" fill="#888" opacity="0.7"/>
         </svg>
       </div>
     </>

@@ -4,22 +4,25 @@ export default function Footer() {
   const githubUrl = 'https://github.com/mohitgorhe7588';
 
   return (
-    <footer className="py-12 text-sm text-zinc-600">
+    <footer className="py-6 border-t border-zinc-100">
       <div className="section-container">
-        <div className="flex flex-col md:flex-row items-start md:items-baseline justify-between gap-6">
-          <div className="space-y-1">
-            <span className="text-zinc-950 font-medium block">Mohit Rajendra Gorhe</span>
-            <span className="text-xs text-zinc-500 font-mono">
-              AI &amp; Data Science Engineer • UAS Integration at Eulerian Bots
-            </span>
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+          {/* Left: name + copyright */}
+          <div className="flex items-center gap-3 text-xs font-mono text-zinc-400">
+            <span className="text-zinc-900 font-medium text-sm">Mohit Gorhe</span>
+            <span>·</span>
+            <span>© {currentYear}</span>
+            <span>·</span>
+            <span>Nashik, India</span>
           </div>
 
-          <div className="flex flex-wrap items-center gap-6 text-xs font-mono">
+          {/* Right: quick links */}
+          <div className="flex items-center gap-5 text-xs font-mono text-zinc-400">
             <a
               href={githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-zinc-600 hover:text-black transition-colors"
+              className="hover:text-black transition-colors duration-200"
             >
               GitHub
             </a>
@@ -27,28 +30,17 @@ export default function Footer() {
               href={linkedinUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-zinc-600 hover:text-black transition-colors"
+              className="hover:text-black transition-colors duration-200"
             >
               LinkedIn
             </a>
             <a
               href="mailto:mohitgorhe122@gmail.com"
-              className="text-zinc-600 hover:text-black transition-colors"
+              className="hover:text-black transition-colors duration-200"
             >
-              mohitgorhe122@gmail.com
-            </a>
-            <a
-              href="tel:+919307572607"
-              className="text-zinc-600 hover:text-black transition-colors"
-            >
-              +91 9307572607
+              Email
             </a>
           </div>
-        </div>
-
-        <div className="mt-8 pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs font-mono text-zinc-400">
-          <span>© {currentYear} Mohit Rajendra Gorhe</span>
-          <span>Nashik, Maharashtra, India</span>
         </div>
       </div>
     </footer>

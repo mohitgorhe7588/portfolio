@@ -58,8 +58,8 @@ export default function Experience() {
                     </span>
                     <ul className="space-y-2.5">
                       {exp.bullets.map((bullet, i) => (
-                        <li key={i} className="text-sm text-zinc-600 leading-relaxed flex items-start gap-2.5">
-                          <span className="text-zinc-900 mt-1 font-bold text-xs">—</span>
+                        <li key={i} className="text-sm text-zinc-600 leading-relaxed flex items-start gap-3">
+                          <span className="mt-[5px] shrink-0 w-1.5 h-1.5 bg-zinc-800 rotate-45 inline-block" />
                           <span>{bullet}</span>
                         </li>
                       ))}
